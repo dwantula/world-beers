@@ -1,0 +1,15 @@
+.card {
+  border: 2px solid gray;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.image{
+  height: 700px;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+}
+
