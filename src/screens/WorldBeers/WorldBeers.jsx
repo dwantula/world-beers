@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import Navigation from '../../shared/components/Navigation/Navigation';
-import AllBeersComponent from '../AllBeers/AllBeers';
-
+import BeerOfTheDayComponent from '../BeerOfTheDay/BeerOfTheDay';
 import './styles.css';
 
 class WorldBeersComponent extends PureComponent {
@@ -17,7 +16,7 @@ class WorldBeersComponent extends PureComponent {
       <div className="card">
         <Navigation />
         <img className="image" alt="beers" src="images/beers2.jpg"></img>
-        <AllBeersComponent />
+        <BeerOfTheDayComponent />
       </div>
     )
   }
