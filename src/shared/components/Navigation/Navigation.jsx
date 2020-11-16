@@ -1,14 +1,16 @@
-import React from 'react';
-import './styles.css';
+import './styles.scss';
 
-const NavigationComponent = ({ pages }) => (
-  <nav>
-    {pages.map(({ id, label }) => (
-      <ul>
-        <li key={id}>{label}</li>
-      </ul>
-    ))}
-  </nav>
-);
+const NavigationComponent = ({ pages, onLinkClick }) => {
+  return (
+    <nav className="nav">
+      <h4 className="title">World beers</h4>
+      {pages.map(({ id, label, component }) => (
+        <button className="links-button" key={id} onClick={() => onLinkClick(component)}>
+          {label}
+        </button>
+      ))}
+    </nav>
+  )
+}
 
-export default NavigationComponent;
+export default NavigationComponent

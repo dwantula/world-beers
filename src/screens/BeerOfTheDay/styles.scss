@@ -1,27 +1,21 @@
-.beer-day {
-  text-align: center;
-  background-color: #febc58;
-  height: 100vh;
+.beer-day-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 .button-choose {
   color: black;
-  margin-top: 30px;
   width: 75px;
   height: 75px;
   border-radius: 50%;
   outline: 0;
-  font-family: sans-serif;
+  font-family: fantasy;
   border: none;
+  background-color: white;
 }
 
 .button-choose:hover {
-  display: inline-block;
-  text-decoration: none;
   background-color: #FEBC58;
   box-shadow: -8px -8px 12px 0 rgba(0, 0, 0, 0.3), 12px 12px 16px rgba(255, 255, 255, 0.25);
   width: 80px;
@@ -31,17 +25,11 @@
 }
 
 .title-beer-day {
-  margin-top: 80px;
-  color: white;
+  color: black;
   font-size: 30px;
-  font-family: Helvetica;
-
+  text-align: center;
+  font-family: fantasy;
+  letter-spacing: 3px;
+  margin-top: 80px;
 }
 
-.list-info {
-  margin-top: 40px;
-  max-width: 680px;
-  color: #f7ecb7;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-}
