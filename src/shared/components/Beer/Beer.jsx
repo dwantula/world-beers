@@ -1,14 +1,12 @@
 import './styles.scss';
- 
-const Beer = props => {
+
+ const Beer = ({ name, abv, description, img })  => {
   return ( 
-    <div className="favourite-card">
-      <div className="column">
-        <h2 className="name-beer">{`Beer's name: ${props.name}`}</h2>
-        <h4 className="favourite-beer">{`ABV: ${props.abv}%`}</h4>
-        <h4 className="favourite-beer">{`Description: ${props.description}`}</h4>
-      </div>
-      <img className="img" src={props.img} alt="beer"></img>
+    <div className="beer">
+      <p className="text-beer">{`Beer's name: ${name}`}</p>
+        <p className="text-beer">{`ABV: ${abv}%`}</p>
+        <p className="text-beer">{`Description: ${description}`}</p>
+        <p>{img && <img className="img" src={img} alt="beer"></img>}</p>
     </div>
   )
 }

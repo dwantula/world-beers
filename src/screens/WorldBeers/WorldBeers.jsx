@@ -4,11 +4,9 @@ import './styles.scss';
 class WorldBeersComponent extends PureComponent {
   render() {
     return (
-      <div className="card">
-        <img className="image" alt="beer" src="images/beer.jpg"></img>
-      </div>
+      <img className="image" alt="beer" src="images/beer.jpg"></img>
     )
   }
 }
 
-export default WorldBeersComponent
+export default WorldBeersComponent;

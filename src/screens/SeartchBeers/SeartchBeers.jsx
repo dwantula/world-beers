@@ -1,22 +1,30 @@
 import React, { PureComponent } from 'react';
 import { fetchAllBeers } from './../../services/beers';
-import ButtonFetchBeers from './../../shared/components/ButtonFetchBeers/ButtonFetchBeers';
+import Button from '../../shared/components/Button/Button';
 import BeersList from './../../shared/components/BeersList/BeersList';
 import './styles.scss';
+import Heading from '../../shared/components/Heading/Heading';
 
 class SeartchBeersComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       beers: null,
+      smallBeer: null
     }
   }  
 
   getAllBeers = async () => {
-    const allBeers = await fetchAllBeers();
-    console.log(allBeers)
+    const allBeers = await fetchAllBeers()
     this.setState({
       beers: allBeers,
+    })
+  }
+
+  weakBeers = () => {
+    const smallvolumeAlcohol = this.state.beers.filter(beer=> beer.abv <= 4.5);
+    this.setState({
+      smallBeer: smallvolumeAlcohol,
     })
   }
   
@@ -24,12 +32,16 @@ class SeartchBeersComponent extends PureComponent {
     const beers = this.state.beers;
     return (
       <div className="seartch-page">
-        <h3 className="title-seartch">Find Beers</h3>
+        <Heading 
+          type="h3"
+          className="title-seartch"
+          text='Find Beers'
+        />
         <h4>Filter: </h4>
         <div className="filter-select">
           <select className="option">
             <option>--Alcohol volume--</option>
-            <option>less 4,5 %</option>
+            <option onClick={this.weakBeers}>less 4,5 %</option>
             <option>more 4,5 %</option>
           </select>
           <select className="option">
@@ -38,7 +50,10 @@ class SeartchBeersComponent extends PureComponent {
             <option>more 60</option>
           </select>
         </div>
-        <ButtonFetchBeers click={this.getAllBeers} />
+        <Button 
+          className="button-seartch" 
+          onClick={this.getAllBeers}
+          text="Find beer" />
         {beers ? <BeersList beers={beers} /> : beers}
       </div>
     )

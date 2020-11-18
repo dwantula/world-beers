@@ -12,7 +12,7 @@ export async function fetchRandomBeer() {
 // $ curl https://api.punkapi.com/v2/beers?page=2&per_page=80
 
 export async function fetchAllBeers() {
-  const url = `${baseUrl}beers?page=2&per_page=80`;
+  const url = `${baseUrl}beers`;
   try {
     const response = await fetch(url);
     return (await response.json())

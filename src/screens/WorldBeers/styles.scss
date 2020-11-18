@@ -1,16 +1,8 @@
-.card {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.image{
+.image {
+  display: block;
   margin-top: 80px;
   height: 500px;
-  width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   border-radius: 8px;
   opacity: 0.8;
 }
-

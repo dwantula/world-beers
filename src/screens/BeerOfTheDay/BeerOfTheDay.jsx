@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { fetchRandomBeer } from '../../services/beers';
+import Heading from '../../shared/components/Heading/Heading';
 import RandomBeer from '../../shared/components/RandomBeer/RandomBeer';
+import Button from '../../shared/components/Button/Button';
 import './styles.scss';
 
 class BeerOfTheDayComponent extends PureComponent {
@@ -13,7 +15,7 @@ class BeerOfTheDayComponent extends PureComponent {
 
   getRandomBeer = async () => {
     const randomBeer = await fetchRandomBeer();
-      this.setState({
+    this.setState({
       value: randomBeer,
     })
   }
@@ -22,13 +24,16 @@ class BeerOfTheDayComponent extends PureComponent {
     const { value } = this.state;
     return (
       <div className="beer-day-page">
-        <h4 className="title-beer-day">Beer of the day</h4>
-        <button 
+        <Heading 
+          type="h3"
+          className="title-beer-day"
+          text="Beer of the day"
+        />
+        <Button 
           className=" button-choose" 
           onClick={this.getRandomBeer}
-        >
-        Choose a beer
-        </button>
+          text="Choose a beer"
+        />
         {value ? <RandomBeer value={value}/> : value }
       </div>
     )

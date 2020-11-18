@@ -1,37 +1,22 @@
-.favourite-card {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  border-bottom: 3px solid gray;
+.img {
+  width: 30%;
 }
 
-.favourite-beer {
-  margin: 0;
+.text-beer {
+  width: 60%;
+  float: right;
+  color: black;
+  text-align: justify;
+  line-height: 35px;
+}
+
+.beer {
+  border-bottom: 2px solid gray;
+  margin-top: 20px;
+  max-width: 680px;
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-  width: 400px;
-  margin-left: 30px;
-  margin-bottom: 20px;
+  margin-left: 40px;
   text-align: justify;
 }
-
-.name-beer {
-  margin-left: 30px;
-  text-decoration: underline black;
-}
-
-.img {
-  display: flex;
-  flex-direction: row;
-  width: 150px;
-  height: 350px;
-  margin-left: 150px;
-  margin-top: 50px;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
-}
-

@@ -2,8 +2,7 @@ import './styles.scss';
 
 const NavigationComponent = ({ pages, onLinkClick }) => {
   return (
-    <nav className="nav">
-      <h4 className="title">World beers</h4>
+    <nav className="nav"> 
       {pages.map(({ id, label, component }) => (
         <button className="links-button" key={id} onClick={() => onLinkClick(component)}>
           {label}
