@@ -9,19 +9,19 @@ class BeerOfTheDayComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: null,
+      beer: null,
     };
-  };
-
-  getRandomBeer = async () => {
-    const randomBeer = await fetchRandomBeer();
-    this.setState({
-      value: randomBeer,
-    })
-  }
+  }  
+    getRandomBeer = async () => {
+      const randomBeer = await fetchRandomBeer();
+      this.setState({
+        beer: randomBeer,
+      })
+    }
+  
 
   render() {
-    const { value } = this.state;
+    const { beer } = this.state;
     return (
       <div className="beer-day-page">
         <Heading 
@@ -34,7 +34,7 @@ class BeerOfTheDayComponent extends PureComponent {
           onClick={this.getRandomBeer}
           text="Choose a beer"
         />
-        {value ? <RandomBeer value={value}/> : value }
+        {beer ? <RandomBeer value={beer}/> : beer }
       </div>
     )
   }

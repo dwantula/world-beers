@@ -19,11 +19,9 @@ class FavouriteBeersComponent extends PureComponent {
   } 
 
   deleteBeer = (id) => {
-    
-    const beer = this.state.beers.filter(element => element.id !== id);
-    
-    this.setState({ beers: beer });
-    saveItemInLocalStorage('beer', beer);
+    const beers = this.state.beers.filter(element => element.id !== id);
+    this.setState({ beers });
+    saveItemInLocalStorage('beer', beers);
   }
   
   render(){
@@ -34,15 +32,15 @@ class FavouriteBeersComponent extends PureComponent {
           className="title-favourite-beers"
           text="Your favourite beers"
         />
-        {this.state.beers.map(({name, id, description, abv, img}) => (
+        {this.state.beers.map(({name, id, description, abv, ibu, img}) => (
             <React.Fragment key={id}>
-              <DeleteButton
-              onClick={() => this.deleteBeer(id)} />
+              <DeleteButton onClick={() => this.deleteBeer(id)} />
               <Beer 
                 name={name}
                 description={description}
                 img={img}
                 abv={abv}
+                ibu={ibu}
               />
             </React.Fragment> 
           ))

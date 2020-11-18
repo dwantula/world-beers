@@ -9,7 +9,6 @@ export async function fetchRandomBeer() {
     console.log(error)
   }
 }
-// $ curl https://api.punkapi.com/v2/beers?page=2&per_page=80
 
 export async function fetchAllBeers() {
   const url = `${baseUrl}beers`;

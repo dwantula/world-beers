@@ -2,7 +2,7 @@ import './styles.scss';
 
 const BeersList = props => {
   const beers = props.beers;
-  console.log(beers)
+  
   return ( 
     <ul>
       {beers.map(beer => (
@@ -13,7 +13,7 @@ const BeersList = props => {
           <h4 className="all-list-beers">{`alcohol vol: ${beer.abv}%`}</h4>
           <h4 className="all-list-beers">{`IBU: ${beer.ibu}`}</h4>
           <div className="row">
-            <img className="img" src={beer.image_url} alt="beer"></img>
+          <img className="img" src={beer.image_url} alt="beer"></img>
           </div>
       </div>
       ))}

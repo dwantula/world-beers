@@ -4,7 +4,10 @@ import './styles.scss';
 class WorldBeersComponent extends PureComponent {
   render() {
     return (
-      <img className="image" alt="beer" src="images/beer.jpg"></img>
+      <div>
+        <h3 className="title">Worl Beers</h3>
+        <img className="image" alt="beer" src="images/beer.jpg"></img>
+      </div>
     )
   }
 }

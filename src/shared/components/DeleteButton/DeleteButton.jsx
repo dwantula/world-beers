@@ -1,9 +1,10 @@
 import React from 'react';
 import './styles.scss';
 
-const DeleteButton = (props) => {
+const DeleteButton = ({ onClick }) => {
+  
   return ( 
-    <button className="delete-beer" onClick={props.onClick}>X</button>
+    <button className="delete-beer" onClick={onClick}>X</button>
    );
 }
  

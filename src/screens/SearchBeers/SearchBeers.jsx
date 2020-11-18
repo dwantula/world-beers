@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import { fetchAllBeers } from './../../services/beers';
+import { fetchAllBeers } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
-import BeersList from './../../shared/components/BeersList/BeersList';
+import BeersList from '../../shared/components/BeersList/BeersList';
 import './styles.scss';
 import Heading from '../../shared/components/Heading/Heading';
 
-class SeartchBeersComponent extends PureComponent {
+class SearchBeersComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,13 +31,15 @@ class SeartchBeersComponent extends PureComponent {
   render(){
     const beers = this.state.beers;
     return (
-      <div className="seartch-page">
+      <div className="search-page">
         <Heading 
           type="h3"
-          className="title-seartch"
+          className="title-search"
           text='Find Beers'
         />
-        <h4>Filter: </h4>
+        <Heading 
+          text="Filter"
+          type="h4" />
         <div className="filter-select">
           <select className="option">
             <option>--Alcohol volume--</option>
@@ -51,7 +53,7 @@ class SeartchBeersComponent extends PureComponent {
           </select>
         </div>
         <Button 
-          className="button-seartch" 
+          className="button-search" 
           onClick={this.getAllBeers}
           text="Find beer" />
         {beers ? <BeersList beers={beers} /> : beers}
@@ -60,4 +62,4 @@ class SeartchBeersComponent extends PureComponent {
   }
 }
 
-export default SeartchBeersComponent;
+export default SearchBeersComponent;

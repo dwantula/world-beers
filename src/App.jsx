@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react';
 import WorldBeersComponent from './screens/WorldBeers/WorldBeers';
 import BeerOfTheDayComponent from './screens/BeerOfTheDay/BeerOfTheDay';
 import FavouriteBeersComponent from './screens/BeersFavourite/FavouriteBeers';
-import SeartchBeersComponent from './screens/SeartchBeers/SeartchBeers';
+import SearchBeersComponent from './screens/SearchBeers/SearchBeers';
 import Navigation from './shared/components/Navigation/Navigation';
 import './App.scss';
 
-const pageSwitch = [
+const pagesOrScreens = [
   {
     id: 'worldBeers',
     label: 'Home',
@@ -19,12 +19,12 @@ const pageSwitch = [
   },
   {
     id: 'seartch beers',
-    label: 'Seartch Beers',
-    component: <SeartchBeersComponent />
+    label: 'Search Beers',
+    component: <SearchBeersComponent />
   },
   {
     id: 'beerDay',
-    label: 'Beer Day',
+    label: 'Beer of the Day',
     component: <BeerOfTheDayComponent />,
   },
 ]
@@ -44,7 +44,7 @@ class App extends PureComponent {
   render() {
     return (
       <>
-        <Navigation pages={pageSwitch} onLinkClick={this.handleScreenChange} />
+        <Navigation pages={pagesOrScreens} onLinkClick={this.handleScreenChange} />
         {this.state.screen}
       </>
     )
