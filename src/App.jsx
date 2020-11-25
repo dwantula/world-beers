@@ -6,14 +6,14 @@ import SearchBeersComponent from './screens/SearchBeers/SearchBeers';
 import Navigation from './shared/components/Navigation/Navigation';
 import './App.scss';
 
-const pagesOrScreens = [
+const pages = [
   {
     id: 'worldBeers',
     label: 'Home',
     component: <WorldBeersComponent />,
   },
   {
-    id:'favouriteBeers',
+    id: 'favouriteBeers',
     label: 'Favourite Beers',
     component: <FavouriteBeersComponent />
   },
@@ -44,7 +44,7 @@ class App extends PureComponent {
   render() {
     return (
       <>
-        <Navigation pages={pagesOrScreens} onLinkClick={this.handleScreenChange} />
+        <Navigation pages={pages} onLinkClick={this.handleScreenChange} />
         {this.state.screen}
       </>
     )

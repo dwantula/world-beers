@@ -1,7 +1,7 @@
-const baseUrl = 'https://api.punkapi.com/v2/'
+const baseUrl = 'https://api.punkapi.com/v2'
 
 export async function fetchRandomBeer() {
-  const url = `${baseUrl}beers/random`
+  const url = `${baseUrl}/beers/random`
   try {
     const response = await fetch(url)
     return (await response.json())[0]
@@ -10,12 +10,12 @@ export async function fetchRandomBeer() {
   }
 }
 
-export async function fetchAllBeers() {
-  const url = `${baseUrl}beers`;
+export async function fetchBeers(param) {
+  const url = `${baseUrl}/beers?${param}`;
   try {
     const response = await fetch(url);
     return (await response.json())
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   }
 }

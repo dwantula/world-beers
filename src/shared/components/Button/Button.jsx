@@ -1,14 +1,14 @@
 import './styles.scss';
 
-const Button = props => {
-  return ( 
+const Button = ({ className, type, onClick, text }) => {
+  return (
     <button
-      className={props.className}
-      type={props.type}
-      onClick={props.onClick}>
-      {props.text}
+      className={className}
+      type={type}
+      onClick={onClick}>
+      {text}
     </button>
   );
 }
- 
+
 export default Button;

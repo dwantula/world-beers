@@ -1,21 +1,19 @@
 .img {
-  width: 25%;
+  width: 20%;
+  height: 400px;
+  float: right;
+  margin-bottom: 50px;
 }
 
 .text-beer {
   width: 60%;
-  float: right;
+  
   color: black;
   text-align: justify;
-  line-height: 35px;
+
 }
 
 .beer {
-  // border-bottom: 2px solid gray;
-  margin-top: 20px;
-  max-width: 680px;
-  color: gray;
+  max-width: 80%;
   font-size: 20px;
-  margin-left: 40px;
-  text-align: justify;
 }

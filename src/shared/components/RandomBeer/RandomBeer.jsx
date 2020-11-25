@@ -1,27 +1,27 @@
 import React from 'react';
-import { saveItemInLocalStorage, getItemFromLocalStorage } from '../../../services/localStorage'; 
+import { saveItemInLocalStorage, getItemFromLocalStorage } from '../../../services/localStorage';
 import Beer from '../Beer/Beer';
 import FavouriteButton from '../FavouriteButton/FavouriteButton';
 import './styles.scss';
 
-const RandomBeer = props => {
-  const randomBeer = props.value;
-  
-  function addBeerToFavourites () {
-    const beers = getItemFromLocalStorage('beer') || [];
-    console.log(beers)
-    const { id, image_url: img, name, description, ibu, abv} = randomBeer;
-    const newBeer = {id, name, description, img, ibu, abv};
+const RandomBeer = ({ value }) => {
+  const randomBeer = value;
+
+
+  function addBeerToFavourites() {
+    const beers = getItemFromLocalStorage('beers') || [];
+    const { id, image_url: img, name, description, ibu, abv } = randomBeer;
+    const newBeer = { id, name, description, image_url: img, ibu, abv };
     const newBeers = [...beers, newBeer];
-    saveItemInLocalStorage('beer', newBeers);
+    saveItemInLocalStorage('beers', newBeers);
   }
 
-  const { id, image_url: img, name, description, abv,ibu } = randomBeer;
-  return ( 
+  const { id, image_url: img, name, description, abv, ibu } = randomBeer;
+  return (
     <div className="random-beer">
       <FavouriteButton
         onClick={addBeerToFavourites} />
-      <Beer 
+      <Beer
         key={id}
         name={name}
         description={description}
@@ -32,5 +32,6 @@ const RandomBeer = props => {
     </div>
   )
 }
-  
+
 export default RandomBeer;
+
