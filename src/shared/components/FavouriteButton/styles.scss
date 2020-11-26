@@ -1,0 +1,13 @@
+.icon {
+  color: red;
+  cursor: pointer;
+  font-size: 30px;
+  display: flex;
+  margin-top: 30px;
+  position: absolute;
+  margin-left: 170px;
+}
+
+.icon:hover {
+  opacity: .6;
+}
