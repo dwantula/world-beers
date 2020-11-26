@@ -1,4 +1,5 @@
 import './styles.scss';
+import PropTypes from 'prop-types';
 const Beer = ({ food, brewed, tagline, ebc, name, abv, description, img, ibu }) => {
   return (
     <div className="beer-card">
@@ -18,6 +19,18 @@ const Beer = ({ food, brewed, tagline, ebc, name, abv, description, img, ibu }) 
     </div >
   );
 };
+
+Beer.propTypes = {
+  food: PropTypes.array,
+  brewed: PropTypes.string,
+  tagline: PropTypes.string,
+  ebc: PropTypes.number,
+  name: PropTypes.string,
+  abv: PropTypes.number,
+  description: PropTypes.string,
+  img: PropTypes.string,
+  ibu: PropTypes.number,
+}
 
 export default Beer;
 

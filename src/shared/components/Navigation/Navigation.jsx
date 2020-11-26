@@ -1,4 +1,5 @@
 import './styles.scss';
+import PropTypes from 'prop-types';
 
 const NavigationComponent = ({ pages, onLinkClick }) => {
   return (
@@ -11,5 +12,10 @@ const NavigationComponent = ({ pages, onLinkClick }) => {
     </nav>
   );
 };
+
+NavigationComponent.propTypes = {
+  pages: PropTypes.array,
+  onLinkClick: PropTypes.func.isRequired
+}
 
 export default NavigationComponent;

@@ -2,6 +2,7 @@ import React from 'react';
 import { saveItemInLocalStorage, getItemFromLocalStorage } from '../../../services/localStorage';
 import Beer from '../Beer/Beer';
 import FavouriteButton from '../FavouriteButton/FavouriteButton';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 const RandomBeer = ({ value }) => {
@@ -30,6 +31,10 @@ const RandomBeer = ({ value }) => {
       />
     </div>
   );
+};
+
+RandomBeer.propTypes = {
+  value: PropTypes.object,
 };
 
 export default RandomBeer;
