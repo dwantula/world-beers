@@ -20,12 +20,12 @@ const generationHeading = (type, classname, text) => {
 
 function Heading({ type, className, text }) {
   return generationHeading(type, className, text);
-}
+};
 
 Heading.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   text: PropTypes.string,
-}
+};
 
 export default Heading;

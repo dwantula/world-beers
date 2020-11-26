@@ -1,19 +1,19 @@
-.img {
-  width: 20%;
-  height: 400px;
-  float: right;
+.beer-card {
+  display: flex;
   margin-bottom: 50px;
 }
 
-.text-beer {
-  width: 60%;
-  
-  color: black;
+.beer-text {
+  margin-left: 70px;
   text-align: justify;
-
+  width: 500px;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 19px;
 }
 
-.beer {
-  max-width: 80%;
-  font-size: 20px;
+.img {
+  width: 150px;
+  height: 450px;
 }
+

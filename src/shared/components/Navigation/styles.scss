@@ -1,6 +1,6 @@
 .links-button {
-  background-color: darkcyan;
-  display: inline-block;
+  background-color: gray;
+  display: block;
   width: 25%;
   padding: 15px 30px;
   text-align: center;
@@ -9,9 +9,12 @@
 }
 
 .links-button:hover {
-  background-color: crimson;
+  background-color: lightgray;
 }
 
 .nav {
-  
+  display: flex;
+  position: fixed;
+  width: 1000px;
+  top: 0;
 }

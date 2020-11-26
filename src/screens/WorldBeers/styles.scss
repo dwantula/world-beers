@@ -12,16 +12,24 @@
   text-align: center;
   letter-spacing: 3px;
   font-family: fantasy;
+  margin-top: 80px
 }
 
 .change-button {
   display: flex;
   height: 30px;
+  width: 120px;
   margin-top:15px;
-  padding: 5px 5px;
-  background-color: cyan;
+  padding: 7px 10px;
+  background-color: gray;
   border: none;
   margin-left: auto;
   margin-right: auto;
   outline: 0;
+  border-radius: 8px;
+  color: whitesmoke;
+}
+
+.change-button:hover {
+  opacity: .6;
 }

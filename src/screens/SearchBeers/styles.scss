@@ -2,56 +2,53 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-left: 100px;
 }
 
 .title-search {
-  color: black;
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
-  font-family: fantasy;
   letter-spacing: 3px;
+  font-family: fantasy;
   margin-top: 80px;
+  margin-right: 200px;
 }
 
 .button-search {
   color: black;
-  margin-top: 30px;
-  margin-left: 900px;
+  margin-left: 100px;
   width: 75px;
   height: 75px;
   border-radius: 50%;
   outline: 0;
-  font-family: fantasy;
   border: none;
-  background-color: lightgray;
+  background-color: gray;
+  margin-top: -20px;
 }
 
 .button-search:hover {
   display: inline-block;
   text-decoration: none;
-  background-color: gray;
+  color: whitesmoke;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   transition: 0.5s;
 }
 
-.beers-list {
-  display: flex;
-  flex-direction: column;
- 
-}
-
-.filter-select {
-  display: flex;
+.filter {
   margin-top: 30px;
-  
+  font-size: 25px;
 }
 
-.option {
+.select-component {
+  display: flex;
+}
+
+.select {
   height: 35px;
-}
-
-.input-option {
-  margin-right: 20px;
+  margin-right: 10px;
+  border-radius: 8px;
+  outline: 0;
+  cursor: pointer;
 }

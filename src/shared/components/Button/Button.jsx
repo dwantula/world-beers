@@ -9,6 +9,6 @@ const Button = ({ className, type, onClick, text }) => {
       {text}
     </button>
   );
-}
+};
 
 export default Button;

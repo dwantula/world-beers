@@ -10,51 +10,51 @@ class FavouriteBeersComponent extends PureComponent {
     super(props);
     this.state = {
       beers: [],
-    }
-  }
+    };
+  };
 
   componentDidMount = () => {
     const beers = getItemFromLocalStorage('beers') || [];
     this.setState({ beers });
-  }
+  };
 
   deleteBeer = (id) => {
     const beers = this.state.beers.filter(element => element.id !== id);
     this.setState({ beers });
     saveItemInLocalStorage('beers', beers);
-  }
+  };
 
   render() {
     const { beers } = this.state;
-    console.log(beers)
     return (
-      <div className="favourite-beers">
+      <div>
         <Heading
           type="h3"
           className="title-favourite-beers"
           text="Your favourite beers"
         />
+        <div className="favourite-beer">
+          {
+            beers.map(({ name, id, description, abv, ibu, image_url: img }) => (
+              <React.Fragment key={id}>
+                <DeleteButton onClick={() => this.deleteBeer(id)} />
+                <Beer
+                  name={name}
+                  description={description}
+                  img={img}
+                  abv={abv}
+                  beer={beers}
+                  ibu={ibu}
+                />
+              </React.Fragment>
+            ))
+          }
+        </div>
+      </div>
 
-        {
-          beers.map(({ name, id, description, abv, ibu, image_url: img }) => (
-            <React.Fragment className="favourite-beers" key={id}>
-              <DeleteButton onClick={() => this.deleteBeer(id)} />
-              <Beer
-                name={name}
-                description={description}
-                img={img}
-                abv={abv}
-                beer={beers}
-                ibu={ibu}
-              />
-            </React.Fragment>
-          ))
-        }
-      </div >
-
-    )
-  }
-}
+    );
+  };
+};
 export default FavouriteBeersComponent;
 
 

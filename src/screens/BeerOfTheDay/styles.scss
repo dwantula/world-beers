@@ -1,10 +1,9 @@
 .title-beer-day {
-  color: black;
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
-  font-family: fantasy;
   letter-spacing: 3px;
-  margin-top: 70px;
+  font-family: fantasy;
+  margin-top: 80px
 }
 
 .button-choose {
@@ -24,8 +23,4 @@
 
 .button-choose:hover {
   background-color: #febc58;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  transition: 0.5s;
 }

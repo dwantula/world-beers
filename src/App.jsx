@@ -34,12 +34,12 @@ class App extends PureComponent {
     super(props);
     this.state = {
       screen: <WorldBeersComponent />,
-    }
-  }
+    };
+  };
 
   handleScreenChange = (screen) => {
     this.setState({ screen })
-  }
+  };
 
   render() {
     return (
@@ -48,6 +48,6 @@ class App extends PureComponent {
         {this.state.screen}
       </>
     )
-  }
-}
+  };
+};
 export default App;

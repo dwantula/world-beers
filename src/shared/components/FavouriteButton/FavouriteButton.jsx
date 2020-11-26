@@ -11,6 +11,6 @@ const FavouriteButton = ({ onClick }) => {
       onClick={onClick}
     />
   );
-}
+};
 
 export default FavouriteButton;
