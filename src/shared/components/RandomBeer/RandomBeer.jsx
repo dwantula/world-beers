@@ -5,8 +5,7 @@ import FavouriteButton from '../FavouriteButton/FavouriteButton';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const RandomBeer = ({ value }) => {
-  const randomBeer = value;
+const RandomBeer = ({ randomBeer }) => {
 
   function addBeerToFavourites() {
     const beers = getItemFromLocalStorage('beers') || [];
@@ -34,7 +33,7 @@ const RandomBeer = ({ value }) => {
 };
 
 RandomBeer.propTypes = {
-  value: PropTypes.object,
+  randomBeer: PropTypes.object.isRequired
 };
 
 export default RandomBeer;

@@ -51,7 +51,6 @@ class FavouriteBeersComponent extends PureComponent {
           }
         </div>
       </div>
-
     );
   };
 };

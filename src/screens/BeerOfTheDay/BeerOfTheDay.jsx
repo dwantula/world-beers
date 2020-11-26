@@ -33,7 +33,7 @@ class BeerOfTheDayComponent extends PureComponent {
           onClick={this.getRandomBeer}
           text="Choose a beer"
         />
-        {beer && <RandomBeer value={beer} />}
+        {beer && <RandomBeer randomBeer={beer} />}
       </div>
     );
   };

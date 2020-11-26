@@ -13,10 +13,10 @@ const Button = ({ className, type, onClick, text }) => {
 };
 
 Button.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.string.isRequired,
   type: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.string
+  text: PropTypes.string.isRequired
 }
 
 export default Button;

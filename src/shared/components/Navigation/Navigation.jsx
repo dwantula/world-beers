@@ -14,7 +14,7 @@ const NavigationComponent = ({ pages, onLinkClick }) => {
 };
 
 NavigationComponent.propTypes = {
-  pages: PropTypes.array,
+  pages: PropTypes.array.isRequired,
   onLinkClick: PropTypes.func.isRequired
 }
 

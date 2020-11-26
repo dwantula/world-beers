@@ -19,12 +19,12 @@ const SelectComponents = ({ className, options, name, value, onChange, placehold
 };
 
 SelectComponents.propTypes = {
-  className: PropTypes.string,
-  options: PropTypes.array,
-  name: PropTypes.string,
-  value: PropTypes.string,
+  className: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
 }
 
 export default SelectComponents;

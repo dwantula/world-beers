@@ -25,10 +25,10 @@ Beer.propTypes = {
   brewed: PropTypes.string,
   tagline: PropTypes.string,
   ebc: PropTypes.number,
-  name: PropTypes.string,
-  abv: PropTypes.number,
-  description: PropTypes.string,
-  img: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  abv: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
   ibu: PropTypes.number,
 }
 
