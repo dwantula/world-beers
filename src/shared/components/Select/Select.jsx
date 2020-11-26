@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 const SelectComponents = ({ className, options, name, value, onChange, placeholder }) => {
@@ -16,5 +17,14 @@ const SelectComponents = ({ className, options, name, value, onChange, placehold
     </>
   );
 };
+
+SelectComponents.propTypes = {
+  className: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+}
 
 export default SelectComponents;

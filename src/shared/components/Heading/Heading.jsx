@@ -24,8 +24,8 @@ function Heading({ type, className, text }) {
 
 Heading.propTypes = {
   type: PropTypes.string,
-  className: PropTypes.string,
-  text: PropTypes.string,
+  className: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default Heading;

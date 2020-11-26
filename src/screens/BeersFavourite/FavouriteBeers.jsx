@@ -51,10 +51,10 @@ class FavouriteBeersComponent extends PureComponent {
           }
         </div>
       </div>
-
     );
   };
 };
+
 export default FavouriteBeersComponent;
 
 
