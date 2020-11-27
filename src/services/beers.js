@@ -1,7 +1,7 @@
 const baseUrl = 'https://api.punkapi.com/v2';
 
 export async function fetchRandomBeer() {
-  const url = `${baseUrl}/beers/random`
+  const url = `${baseUrl}/beers/random`;
   try {
     const response = await fetch(url)
     return (await response.json())[0]
