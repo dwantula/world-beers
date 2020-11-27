@@ -35,7 +35,7 @@ class FavouriteBeersComponent extends PureComponent {
         />
         <div className="favourite-beer">
           {
-            beers.map(({ name, id, description, abv, ibu, image_url: img }) => (
+            beers.map(({ name, id, description, abv, ibu, img }) => (
               <React.Fragment key={id}>
                 <DeleteButton onClick={() => this.deleteBeer(id)} />
                 <Beer

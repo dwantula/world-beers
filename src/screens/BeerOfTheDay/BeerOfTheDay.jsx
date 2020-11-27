@@ -16,20 +16,23 @@ class BeerOfTheDayComponent extends PureComponent {
   };
 
   getRandomBeer = async () => {
-    const beer = await fetchRandomBeer();
+    const beer = await fetchRandomBeer()
     this.setState({ beer });
   };
 
   addBeerToFavourites = () => {
+    const { beer } = this.state;
     const beers = getItemFromLocalStorage('beers') || [];
-    const { id, image_url: img, name, description, ibu, abv } = this.state.beer;
-    const newBeer = { id, name, description, image_url: img, ibu, abv };
+    const { id, img, name, description, ibu, abv } = beer;
+    const newBeer = { id, name, description, img, ibu, abv };
+    console.log(img)
     const newBeers = [...beers, newBeer];
     saveItemInLocalStorage('beers', newBeers);
   };
 
   render() {
-    const { id, image_url: img, abv, ibu, name, description } = this.state.beer;
+    const { beer } = this.state;
+    const { id, img, abv, ibu, name, description } = beer;
     return (
       <div className="beer-day-page">
         <Heading

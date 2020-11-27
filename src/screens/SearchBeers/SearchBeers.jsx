@@ -104,8 +104,8 @@ class SearchBeersComponent extends PureComponent {
   };
 
   getBeers = async () => {
-    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
-    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food])
+    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, } = this.state;
+    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food,])
     this.setState({ beers });
   };
 
@@ -118,6 +118,7 @@ class SearchBeersComponent extends PureComponent {
 
   render() {
     const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
+    console.log(beers)
     return (
       <div className="search-page">
         <Heading
@@ -178,7 +179,7 @@ class SearchBeersComponent extends PureComponent {
           />
         </div>
         {
-          beers.map(({ first_brewed: brewed, food_pairing: food, tagline, ebc, id, name, abv, image_url: img, description, ibu }) => (
+          beers.map(({ brewed, food, tagline, ebc, id, name, abv, img, description, ibu }) => (
             <div className="beers-list" key={id}>
               <FavouriteButton
                 onClick={() => this.addToFavorites(id)}
