@@ -28,7 +28,7 @@ Beer.propTypes = {
   name: PropTypes.string.isRequired,
   abv: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
+  img: PropTypes.string,
   ibu: PropTypes.number,
 }
 

@@ -1,11 +1,13 @@
+@import '../../main-styles.scss';
+
 .delete-beer {
   border: none;
   outline: 0;
   color: red;
   font-size: 25px;
   cursor: pointer;
-  background-color: lightgray;
-   margin-left: 800px;
+  background-color: whitesmoke;
+  margin-left: 800px;
 }
 
 .delete-beer:hover {
