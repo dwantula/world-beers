@@ -19,6 +19,8 @@ const alcohollVolumeOptions = [
   },
 ]
 
+
+
 const ibuOptions = [
   {
     label: "less than 60",
@@ -93,6 +95,7 @@ class SearchBeersComponent extends PureComponent {
       colorOfBeer: '',
       brewedBefore: '',
       food: '',
+      nameBeer: '',
     };
   };
 
@@ -101,13 +104,15 @@ class SearchBeersComponent extends PureComponent {
     this.setState({
       [name]: value
     });
+    console.log(value)
   };
 
   getBeers = async () => {
-    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, } = this.state;
-    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food,])
+    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
+    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food])
     this.setState({ beers });
   };
+
 
   addToFavorites = id => {
     const beers = getItemFromLocalStorage('beers') || [];
@@ -117,7 +122,7 @@ class SearchBeersComponent extends PureComponent {
   };
 
   render() {
-    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
+    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, nameBeer } = this.state;
     return (
       <div className="search-page">
         <Heading
@@ -176,6 +181,21 @@ class SearchBeersComponent extends PureComponent {
             onClick={this.getBeers}
             text="Find beers"
           />
+        </div>
+        <div className="form">
+          <Heading
+            text="Search beer"
+            type="h4"
+          />
+          <input
+            name="nameBeer"
+            onChange={this.handleChange}
+            value={nameBeer}
+            placeholder="Write name of beer"
+          />
+          <Button
+            text="search"
+            onClick={this.getBeersName} />
         </div>
         {
           beers.map(({ brewed, food, tagline, ebc, id, name, abv, img, description, ibu }) => (
