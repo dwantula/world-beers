@@ -118,7 +118,6 @@ class SearchBeersComponent extends PureComponent {
 
   render() {
     const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
-    console.log(beers)
     return (
       <div className="search-page">
         <Heading

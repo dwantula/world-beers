@@ -20,17 +20,17 @@ const Beer = ({ food, brewed, tagline, ebc, name, abv, description, img, ibu }) 
   );
 };
 
-// Beer.propTypes = {
-//   food: PropTypes.array,
-//   brewed: PropTypes.string,
-//   tagline: PropTypes.string,
-//   ebc: PropTypes.number,
-//   name: PropTypes.string.isRequired,
-//   abv: PropTypes.number.isRequired,
-//   description: PropTypes.string.isRequired,
-//   img: PropTypes.string,
-//   ibu: PropTypes.number,
-// }
+Beer.propTypes = {
+  food: PropTypes.array,
+  brewed: PropTypes.string,
+  tagline: PropTypes.string,
+  ebc: PropTypes.number,
+  name: PropTypes.string.isRequired,
+  abv: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  img: PropTypes.string,
+  ibu: PropTypes.number,
+}
 
 export default Beer;
 

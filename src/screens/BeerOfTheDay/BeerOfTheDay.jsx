@@ -25,7 +25,6 @@ class BeerOfTheDayComponent extends PureComponent {
     const beers = getItemFromLocalStorage('beers') || [];
     const { id, img, name, description, ibu, abv } = beer;
     const newBeer = { id, name, description, img, ibu, abv };
-    console.log(img)
     const newBeers = [...beers, newBeer];
     saveItemInLocalStorage('beers', newBeers);
   };

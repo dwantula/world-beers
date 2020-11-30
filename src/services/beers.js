@@ -13,17 +13,14 @@ export async function fetchRandomBeer() {
 };
 
 export async function fetchBeers(param) {
-  const url = `${baseUrl}/beers?${param.join('&')}`;
+  const url = `${baseUrl}/beers?${param.filter(String).join('&')}`
   try {
     const response = await fetch(url);
     const beers = (await response.json())
-    console.log(beers)
-    const { id, description, name, abv, ibu, ebc, tagline, first_brewed: brewed, food_pairing: food } = beers
-    console.log(id)
-    return ({ id, description, name, abv, ibu, ebc, tagline, brewed, food })
-
+    return beers.map(({ id, description, name, abv, ibu, ebc, image_url: img, tagline, first_brewed: brewed, food_pairing: food }) => (
+      { id, description, ibu, abv, name, ebc, tagline, img, food, brewed })
+    )
   } catch (error) {
     console.log(error)
   };
-
 };
