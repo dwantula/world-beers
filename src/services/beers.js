@@ -17,8 +17,29 @@ export async function fetchBeers(param) {
   try {
     const response = await fetch(url);
     const beers = (await response.json())
-    return beers.map(({ id, description, name, abv, ibu, ebc, image_url: img, tagline, first_brewed: brewed, food_pairing: food }) => (
-      { id, description, ibu, abv, name, ebc, tagline, img, food, brewed })
+    return beers.map(
+      ({ id,
+        description,
+        name,
+        abv,
+        ibu,
+        ebc,
+        image_url: img,
+        tagline,
+        first_brewed: brewed,
+        food_pairing: food
+      }) => ({
+        id,
+        description,
+        ibu,
+        abv,
+        name,
+        ebc,
+        tagline,
+        img,
+        food,
+        brewed
+      })
     )
   } catch (error) {
     console.log(error)

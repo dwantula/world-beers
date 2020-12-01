@@ -6,6 +6,7 @@ import './styles.scss';
 import Heading from '../../shared/components/Heading/Heading';
 import SelectComponent from '../../shared/components/Select/Select';
 import FavouriteButton from '../../shared/components/FavouriteButton/FavouriteButton';
+import InputComponent from '../../shared/components/Input/Input';
 import { getItemFromLocalStorage, saveItemInLocalStorage } from '../../services/localStorage';
 
 const alcohollVolumeOptions = [
@@ -59,28 +60,81 @@ const brewedOptions = [
 const foodOptions = [
   {
     label: "Chicken",
-    value: "food=Chicken"
+    value: "food=chicken"
   },
   {
     label: "Burger",
-    value: "food=Burger"
+    value: "food=burger"
   },
   {
     label: "Salad",
-    value: "food=Salad"
+    value: "food=salad"
   },
   {
     label: "Pasta",
-    value: "food=Pasta"
+    value: "food=pasta"
   },
   {
     label: "Fish",
-    value: "food=Fish"
+    value: "food=fish"
   },
   {
     label: "Beef",
-    value: "food=Beef"
+    value: "food=beef"
   },
+]
+
+const yeastOptions = [
+  {
+    label: 'Pilsen Lager',
+    value: 'yeast=pilsen_lager'
+  },
+  {
+    label: 'American Ale',
+    value: 'yeast=american_ale'
+  },
+  {
+    label: 'Belgian Ardennes',
+    value: 'yeast=belgian_ardennes'
+  },
+  {
+    label: 'French Saison',
+    value: 'yeast=french_saison'
+  }
+]
+
+const hopsOptions = [
+  {
+    label: 'Fuggles',
+    value: 'hops=fuggles'
+  },
+  {
+    label: 'First Gold',
+    value: 'hops=first_gold'
+  },
+  {
+    label: 'Simcoe',
+    value: 'hops=simcoe'
+  },
+  {
+    label: 'Amarillo',
+    value: 'hops=amarillo'
+  }
+]
+
+const maltOptions = [
+  {
+    label: 'Caramalt',
+    value: 'malt=caramalt'
+  },
+  {
+    label: 'Munich',
+    value: 'malt=munich'
+  },
+  {
+    label: 'Extra Pale',
+    value: 'malt=extra_pale'
+  }
 ]
 
 class SearchBeersComponent extends PureComponent {
@@ -93,6 +147,10 @@ class SearchBeersComponent extends PureComponent {
       colorOfBeer: '',
       brewedBefore: '',
       food: '',
+      beerName: '',
+      yeast: '',
+      hops: '',
+      malt: '',
     };
   };
 
@@ -104,10 +162,16 @@ class SearchBeersComponent extends PureComponent {
   };
 
   getBeers = async () => {
-    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, } = this.state;
-    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food,])
+    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, yeast, hops, malt } = this.state;
+    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, yeast, hops, malt]);
     this.setState({ beers });
   };
+
+  getBeerByName = async () => {
+    const { beerName } = this.state
+    const beers = await fetchBeers([`beer_name=${beerName}`]);
+    this.setState({ beers })
+  }
 
   addToFavorites = id => {
     const beers = getItemFromLocalStorage('beers') || [];
@@ -117,7 +181,7 @@ class SearchBeersComponent extends PureComponent {
   };
 
   render() {
-    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
+    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast, hops, malt } = this.state;
     return (
       <div className="search-page">
         <Heading
@@ -171,10 +235,50 @@ class SearchBeersComponent extends PureComponent {
             options={foodOptions}
             placeholder="choose food paring"
           />
+          <SelectComponent
+            onChange={this.handleChange}
+            className="select"
+            name="yeast"
+            value={yeast}
+            options={yeastOptions}
+            placeholder="choose yeast"
+          />
+          <SelectComponent
+            onChange={this.handleChange}
+            className="select"
+            name="hops"
+            value={hops}
+            options={hopsOptions}
+            placeholder="choose hops"
+          />
+          <SelectComponent
+            onChange={this.handleChange}
+            className="select"
+            name="malt"
+            value={malt}
+            options={maltOptions}
+            placeholder="choose malt"
+          />
           <Button
             className="button-search"
             onClick={this.getBeers}
             text="Find beers"
+          />
+        </div>
+        <div className="form">
+          <Heading
+            text="Search beer"
+            type="h4"
+          />
+          <InputComponent
+            name="beerName"
+            onChange={this.handleChange}
+            value={beerName}
+            placeholder="Write name of beer"
+          />
+          <Button
+            text="search"
+            onClick={this.getBeerByName}
           />
         </div>
         {

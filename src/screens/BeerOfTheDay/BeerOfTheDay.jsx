@@ -31,7 +31,7 @@ class BeerOfTheDayComponent extends PureComponent {
 
   render() {
     const { beer } = this.state;
-    const { id, img, abv, ibu, name, description } = beer;
+    const { img, abv, ibu, name, description } = beer;
     return (
       <div className="beer-day-page">
         <Heading
@@ -44,7 +44,7 @@ class BeerOfTheDayComponent extends PureComponent {
           text="Choose a beer"
         />
         {
-          name && <div key={id} className="random-beer">
+          name && <div className="random-beer">
             <FavouriteButton
               onClick={this.addBeerToFavourites} />
             <Beer
