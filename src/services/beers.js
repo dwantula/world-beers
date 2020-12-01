@@ -12,10 +12,6 @@ export async function fetchRandomBeer() {
   };
 };
 
-export async function fetchNameOfBeer() {
-  const url = `${baseUrl}beers?beer_name=${this.state.value} `
-}
-
 export async function fetchBeers(param) {
   const url = `${baseUrl}/beers?${param.filter(String).join('&')}`
   try {

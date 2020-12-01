@@ -6,6 +6,7 @@ import './styles.scss';
 import Heading from '../../shared/components/Heading/Heading';
 import SelectComponent from '../../shared/components/Select/Select';
 import FavouriteButton from '../../shared/components/FavouriteButton/FavouriteButton';
+import InputComponent from '../../shared/components/Input/Input';
 import { getItemFromLocalStorage, saveItemInLocalStorage } from '../../services/localStorage';
 
 const alcohollVolumeOptions = [
@@ -18,8 +19,6 @@ const alcohollVolumeOptions = [
     value: "abv_lt=4.5",
   },
 ]
-
-
 
 const ibuOptions = [
   {
@@ -95,8 +94,10 @@ class SearchBeersComponent extends PureComponent {
       colorOfBeer: '',
       brewedBefore: '',
       food: '',
-      nameBeer: '',
+      beerName: 'beer_name=' + '',
+      yeast: 'ingredients.yeast=' + ''
     };
+
   };
 
   handleChange = event => {
@@ -104,15 +105,20 @@ class SearchBeersComponent extends PureComponent {
     this.setState({
       [name]: value
     });
-    console.log(value)
   };
+
+  handleInputChange = event => {
+    this.setState({
+      beerName: event.target.value,
+    })
+  }
 
   getBeers = async () => {
-    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food } = this.state;
-    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food])
+    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast } = this.state;
+    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast])
     this.setState({ beers });
-  };
 
+  };
 
   addToFavorites = id => {
     const beers = getItemFromLocalStorage('beers') || [];
@@ -122,7 +128,7 @@ class SearchBeersComponent extends PureComponent {
   };
 
   render() {
-    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, nameBeer } = this.state;
+    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast } = this.state;
     return (
       <div className="search-page">
         <Heading
@@ -187,15 +193,26 @@ class SearchBeersComponent extends PureComponent {
             text="Search beer"
             type="h4"
           />
-          <input
-            name="nameBeer"
-            onChange={this.handleChange}
-            value={nameBeer}
+          <InputComponent
+            name="beerName"
+            onChange={this.handleInputChange}
+            value={beerName}
             placeholder="Write name of beer"
           />
           <Button
             text="search"
-            onClick={this.getBeersName} />
+            onClick={this.getBeers}
+          />
+          <InputComponent
+            name="yeast"
+            onChange={this.handleYeastChange}
+            value={yeast}
+            placeholder="Write yeast of beer"
+          />
+          <Button
+            text="search"
+            onClick={this.getBeers}
+          />
         </div>
         {
           beers.map(({ brewed, food, tagline, ebc, id, name, abv, img, description, ibu }) => (
