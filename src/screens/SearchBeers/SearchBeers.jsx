@@ -60,80 +60,80 @@ const brewedOptions = [
 const foodOptions = [
   {
     label: "Chicken",
-    value: "food=Chicken"
+    value: "food=chicken"
   },
   {
     label: "Burger",
-    value: "food=Burger"
+    value: "food=burger"
   },
   {
     label: "Salad",
-    value: "food=Salad"
+    value: "food=salad"
   },
   {
     label: "Pasta",
-    value: "food=Pasta"
+    value: "food=pasta"
   },
   {
     label: "Fish",
-    value: "food=Fish"
+    value: "food=fish"
   },
   {
     label: "Beef",
-    value: "food=Beef"
+    value: "food=beef"
   },
 ]
 
 const yeastOptions = [
   {
     label: 'Pilsen Lager',
-    value: 'yeast=Pilsen Lager'
+    value: 'yeast=pilsen_lager'
   },
   {
     label: 'American Ale',
-    value: 'yeast=American Ale'
+    value: 'yeast=american_ale'
   },
   {
     label: 'Belgian Ardennes',
-    value: 'yeast=Belgian Ardennes'
+    value: 'yeast=belgian_ardennes'
   },
   {
     label: 'French Saison',
-    value: 'yeast=French Saison'
+    value: 'yeast=french_saison'
   }
 ]
 
 const hopsOptions = [
   {
     label: 'Fuggles',
-    value: 'hops=Fuggles'
+    value: 'hops=fuggles'
   },
   {
     label: 'First Gold',
-    value: 'hops=First Gold'
+    value: 'hops=first_gold'
   },
   {
     label: 'Simcoe',
-    value: 'hops=Simcoe'
+    value: 'hops=simcoe'
   },
   {
     label: 'Amarillo',
-    value: 'hops=Amarillo'
+    value: 'hops=amarillo'
   }
 ]
 
 const maltOptions = [
   {
     label: 'Caramalt',
-    value: 'malt=Caramalt'
+    value: 'malt=caramalt'
   },
   {
     label: 'Munich',
-    value: 'malt=Munich'
+    value: 'malt=munich'
   },
   {
     label: 'Extra Pale',
-    value: 'malt=Extra Pale'
+    value: 'malt=extra_pale'
   }
 ]
 
@@ -147,7 +147,7 @@ class SearchBeersComponent extends PureComponent {
       colorOfBeer: '',
       brewedBefore: '',
       food: '',
-      beerName: [],
+      beerName: '',
       yeast: '',
       hops: '',
       malt: '',
@@ -275,7 +275,6 @@ class SearchBeersComponent extends PureComponent {
             onChange={this.handleChange}
             value={beerName}
             placeholder="Write name of beer"
-            option='beer_name='
           />
           <Button
             text="search"
