@@ -8,25 +8,24 @@ import Button from '../../shared/components/Button/Button';
 import './styles.scss';
 
 
-const createEmptyBeer = () => ({
-  name: '',
-  abv: '',
-  img: '',
-  ibu: '',
-  isPlaceholder: true,
-})
+
 
 function BeerOfTheDayComponent() {
 
-  const [beer, setBeer] = useState(createEmptyBeer())
+  const [beer, setBeer] = useState({
+    name: '',
+    abv: '',
+    img: '',
+    ibu: '',
+    isPlaceholder: true
+  })
 
-  const getRandomBeer = async () => {
+  async function getRandomBeer() {
     const beer = await fetchRandomBeer()
-    console.log(beer)
     setBeer(beer);
   };
 
-  const addBeerToFavourites = () => {
+  function addBeerToFavourites() {
     const beers = getItemFromLocalStorage('beers') || [];
     const { id, img, name, description, ibu, abv } = beer;
     const newBeer = { id, name, description, img, ibu, abv };
