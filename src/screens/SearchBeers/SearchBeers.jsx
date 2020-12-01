@@ -84,6 +84,59 @@ const foodOptions = [
   },
 ]
 
+const yeastOptions = [
+  {
+    label: 'Pilsen Lager',
+    value: 'yeast=Pilsen Lager'
+  },
+  {
+    label: 'American Ale',
+    value: 'yeast=American Ale'
+  },
+  {
+    label: 'Belgian Ardennes',
+    value: 'yeast=Belgian Ardennes'
+  },
+  {
+    label: 'French Saison',
+    value: 'yeast=French Saison'
+  }
+]
+
+const hopsOptions = [
+  {
+    label: 'Fuggles',
+    value: 'hops=Fuggles'
+  },
+  {
+    label: 'First Gold',
+    value: 'hops=First Gold'
+  },
+  {
+    label: 'Simcoe',
+    value: 'hops=Simcoe'
+  },
+  {
+    label: 'Amarillo',
+    value: 'hops=Amarillo'
+  }
+]
+
+const maltOptions = [
+  {
+    label: 'Caramalt',
+    value: 'malt=Caramalt'
+  },
+  {
+    label: 'Munich',
+    value: 'malt=Munich'
+  },
+  {
+    label: 'Extra Pale',
+    value: 'malt=Extra Pale'
+  }
+]
+
 class SearchBeersComponent extends PureComponent {
   constructor(props) {
     super(props);
@@ -94,10 +147,11 @@ class SearchBeersComponent extends PureComponent {
       colorOfBeer: '',
       brewedBefore: '',
       food: '',
-      beerName: 'beer_name=' + '',
-      yeast: 'ingredients.yeast=' + ''
+      beerName: [],
+      yeast: '',
+      hops: '',
+      malt: '',
     };
-
   };
 
   handleChange = event => {
@@ -107,18 +161,17 @@ class SearchBeersComponent extends PureComponent {
     });
   };
 
-  handleInputChange = event => {
-    this.setState({
-      beerName: event.target.value,
-    })
-  }
-
   getBeers = async () => {
-    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast } = this.state;
-    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast])
+    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, yeast, hops, malt } = this.state;
+    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, yeast, hops, malt]);
     this.setState({ beers });
-
   };
+
+  getBeerByName = async () => {
+    const { beerName } = this.state
+    const beers = await fetchBeers([`beer_name=${beerName}`]);
+    this.setState({ beers })
+  }
 
   addToFavorites = id => {
     const beers = getItemFromLocalStorage('beers') || [];
@@ -128,7 +181,7 @@ class SearchBeersComponent extends PureComponent {
   };
 
   render() {
-    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast } = this.state;
+    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast, hops, malt } = this.state;
     return (
       <div className="search-page">
         <Heading
@@ -182,6 +235,30 @@ class SearchBeersComponent extends PureComponent {
             options={foodOptions}
             placeholder="choose food paring"
           />
+          <SelectComponent
+            onChange={this.handleChange}
+            className="select"
+            name="yeast"
+            value={yeast}
+            options={yeastOptions}
+            placeholder="choose yeast"
+          />
+          <SelectComponent
+            onChange={this.handleChange}
+            className="select"
+            name="hops"
+            value={hops}
+            options={hopsOptions}
+            placeholder="choose hops"
+          />
+          <SelectComponent
+            onChange={this.handleChange}
+            className="select"
+            name="malt"
+            value={malt}
+            options={maltOptions}
+            placeholder="choose malt"
+          />
           <Button
             className="button-search"
             onClick={this.getBeers}
@@ -195,23 +272,14 @@ class SearchBeersComponent extends PureComponent {
           />
           <InputComponent
             name="beerName"
-            onChange={this.handleInputChange}
+            onChange={this.handleChange}
             value={beerName}
             placeholder="Write name of beer"
+            option='beer_name='
           />
           <Button
             text="search"
-            onClick={this.getBeers}
-          />
-          <InputComponent
-            name="yeast"
-            onChange={this.handleYeastChange}
-            value={yeast}
-            placeholder="Write yeast of beer"
-          />
-          <Button
-            text="search"
-            onClick={this.getBeers}
+            onClick={this.getBeerByName}
           />
         </div>
         {

@@ -19,7 +19,9 @@ const InputComponent = ({ className, placeholder, value, type, name, onChange })
 InputComponent.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+  type: PropTypes.string,
 }
 
 export default InputComponent;
