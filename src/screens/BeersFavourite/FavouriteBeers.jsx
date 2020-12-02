@@ -18,6 +18,12 @@ class FavouriteBeersComponent extends PureComponent {
     this.setState({ beers });
   };
 
+  // addBeers = (id) => {
+  //   const beers = this.state.beers.find(elem => elem.id !== id);
+  //   this.setState({ beers })
+
+  // }
+
   deleteBeer = (id) => {
     const beers = this.state.beers.filter(element => element.id !== id);
     this.setState({ beers });
@@ -26,6 +32,7 @@ class FavouriteBeersComponent extends PureComponent {
 
   render() {
     const { beers } = this.state;
+    console.log(beers)
     return (
       <div>
         <Heading
