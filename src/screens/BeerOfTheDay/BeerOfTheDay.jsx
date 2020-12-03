@@ -27,7 +27,6 @@ function BeerOfTheDayComponent() {
 
   function addBeerToFavourites() {
     const beers = getItemFromLocalStorage('beers') || []
-    console.log(beers)
     const { id, img, name, description, ibu, abv } = beer
     const newBeer = { id, name, description, img, ibu, abv }
     const newBeers = [...beers, newBeer]

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { fetchBeers } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
 import Beer from '../../shared/components/Beer/Beer';
@@ -137,7 +138,7 @@ const maltOptions = [
   }
 ]
 
-function SearchBeersComponent(props) {
+function SearchBeersComponent() {
 
   const [beers, setBeers] = useState([])
   const [param, setParam] = useState({
@@ -151,14 +152,13 @@ function SearchBeersComponent(props) {
     hops: '',
     malt: '',
     beerName: '',
-    isPlaceholder: true
   });
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setParam({
-      [name]: value
-    });
+    setParam(prevParam => (
+      { prevParam, [name]: value })
+    );
   };
 
   async function getBeers() {
@@ -169,15 +169,16 @@ function SearchBeersComponent(props) {
   async function getBeerByName() {
     const beers = await fetchBeers([`beer_name=${param.beerName}`]);
     setBeers(beers)
-  }
+  };
 
   function addToFavorites(id) {
     const storedBeers = getItemFromLocalStorage('beers') || [];
-    console.log(beers)
     const beer = beers.find(elem => elem.id === id);
     const newBeer = [...storedBeers, beer];
     saveItemInLocalStorage('beers', newBeer);
   };
+
+  const { register, handleSubmit, errors } = useForm();
 
   return (
     <div className="search-page">
@@ -270,16 +271,18 @@ function SearchBeersComponent(props) {
         <InputComponent
           name="beerName"
           onChange={handleChange}
-          value={param.beerName}
           placeholder="Write name of beer"
+          register={register({ minLength: 2, maxLength: 12 })}
         />
+        {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
         <Button
+          type="button"
           text="search"
-          onClick={getBeerByName}
+          onClick={handleSubmit(getBeerByName)}
         />
       </div>
       {
-        !param.isPlaceholder && beers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
+        beers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
           <div className="beers-list" key={id}>
             <FavouriteButton
               onClick={() => addToFavorites(id)}
@@ -297,7 +300,7 @@ function SearchBeersComponent(props) {
           </div>
         ))
       }
-    </div>
+    </div >
   );
 };
 
