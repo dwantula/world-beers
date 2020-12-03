@@ -15,7 +15,7 @@ export async function fetchRandomBeer() {
 export async function fetchBeers(param) {
   const url = `${baseUrl}/beers?${param.filter(String).join('&')}`
   try {
-    const response = await fetch(url);
+    const response = await fetch(url)
     const beers = (await response.json())
     return beers.map(
       ({ id,
