@@ -168,12 +168,12 @@ function SearchBeersComponent() {
   };
 
   async function getBeersByName() {
-    const beers = await fetchBeers([`beer_name=${params.beerName}`]) || [];
+    const beers = await fetchBeers([`beer_name=${params.beerName}`]);
     setBeers(beers);
   };
 
   function addToFavorites(id) {
-    const storedBeers = getItemFromLocalStorage('beers');
+    const storedBeers = getItemFromLocalStorage('beers') || [];
     const allBeers = beers.find(elem => elem.id === id);
     const newBeer = [...storedBeers, allBeers];
     saveItemInLocalStorage('beers', newBeer);
