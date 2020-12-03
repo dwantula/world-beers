@@ -157,8 +157,8 @@ function SearchBeersComponent() {
   function handleChange(event) {
 
     const { name, value } = event.target;
-    setParams(prevParam => (
-      { prevParam, [name]: value })
+    setParams(prevParams => (
+      { prevParams, [name]: value })
     );
   };
 
@@ -167,15 +167,15 @@ function SearchBeersComponent() {
     setBeers(beers);
   };
 
-  async function getBeerByName() {
+  async function getBeersByName() {
     const beers = await fetchBeers([`beer_name=${params.beerName}`]);
     setBeers(beers)
   };
 
   function addToFavorites(id) {
     const storedBeers = getItemFromLocalStorage('beers') || [];
-    const beer = beers.find(elem => elem.id === id);
-    const newBeer = [...storedBeers, beer];
+    const allBeers = beers.find(elem => elem.id === id);
+    const newBeer = [...storedBeers, allBeers];
     saveItemInLocalStorage('beers', newBeer);
   };
 
@@ -279,7 +279,7 @@ function SearchBeersComponent() {
         <Button
           type="button"
           text="search"
-          onClick={handleSubmit(getBeerByName)}
+          onClick={handleSubmit(getBeersByName)}
         />
       </div>
       {
