@@ -8,14 +8,13 @@ export async function fetchRandomBeer() {
     const { id, image_url: img, name, description, ibu, abv } = beer;
     return ({ id, img, name, description, ibu, abv })
   } catch (error) {
-    console.log(error)
   };
 };
 
 export async function fetchBeers(param) {
   const url = `${baseUrl}/beers?${param.filter(String).join('&')}`
   try {
-    const response = await fetch(url);
+    const response = await fetch(url)
     const beers = (await response.json())
     return beers.map(
       ({ id,
@@ -42,6 +41,6 @@ export async function fetchBeers(param) {
       })
     )
   } catch (error) {
-    console.log(error)
+
   };
 };

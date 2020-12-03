@@ -168,7 +168,7 @@ function SearchBeersComponent() {
   };
 
   async function getBeersByName() {
-    const beers = await fetchBeers([`beer_name=${params.beerName}`]);
+    const beers = await fetchBeers([`beer_name=${params.beerName}`]) || [];
     setBeers(beers)
   };
 
@@ -273,7 +273,7 @@ function SearchBeersComponent() {
           name="beerName"
           onChange={handleChange}
           placeholder="Write name of beer"
-          register={register({ minLength: 2, maxLength: 12 })}
+          register={register({ required: true, minLength: 2 })}
         />
         {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
         <Button
