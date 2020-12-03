@@ -141,7 +141,7 @@ const maltOptions = [
 function SearchBeersComponent() {
 
   const [beers, setBeers] = useState([])
-  const [param, setParam] = useState({
+  const [params, setParams] = useState({
     alcoholVolume: '',
     id: '',
     ibuRange: '',
@@ -155,19 +155,20 @@ function SearchBeersComponent() {
   });
 
   function handleChange(event) {
+
     const { name, value } = event.target;
-    setParam(prevParam => (
+    setParams(prevParam => (
       { prevParam, [name]: value })
     );
   };
 
   async function getBeers() {
-    const beers = await fetchBeers([param.alcoholVolume, param.ibuRange, param.colorOfBeer, param.brewedBefore, param.food, param.yeast, param.hops, param.malt]);
+    const beers = await fetchBeers([params.alcoholVolume, params.ibuRange, params.colorOfBeer, params.brewedBefore, params.food, params.yeast, params.hops, params.malt]);
     setBeers(beers);
   };
 
   async function getBeerByName() {
-    const beers = await fetchBeers([`beer_name=${param.beerName}`]);
+    const beers = await fetchBeers([`beer_name=${params.beerName}`]);
     setBeers(beers)
   };
 
@@ -197,7 +198,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="alcoholVolume"
-          value={param.alcoholVolume}
+          value={params.alcoholVolume}
           options={alcohollVolumeOptions}
           placeholder="choose Alcohol Volume"
         />
@@ -205,7 +206,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="ibuRange"
-          value={param.ibuRange}
+          value={params.ibuRange}
           options={ibuOptions}
           placeholder="choose IBU range"
         />
@@ -213,7 +214,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="colorOfBeer"
-          value={param.colorOfBeer}
+          value={params.colorOfBeer}
           options={ebcOptions}
           placeholder="choose EBC beers"
         />
@@ -221,7 +222,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="brewedBefore"
-          value={param.brewedBefore}
+          value={params.brewedBefore}
           options={brewedOptions}
           placeholder="choose date before brewed"
         />
@@ -229,7 +230,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="food"
-          value={param.food}
+          value={params.food}
           options={foodOptions}
           placeholder="choose food paring"
         />
@@ -237,7 +238,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="yeast"
-          value={param.yeast}
+          value={params.yeast}
           options={yeastOptions}
           placeholder="choose yeast"
         />
@@ -245,7 +246,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="hops"
-          value={param.hops}
+          value={params.hops}
           options={hopsOptions}
           placeholder="choose hops"
         />
@@ -253,7 +254,7 @@ function SearchBeersComponent() {
           onChange={handleChange}
           className="select"
           name="malt"
-          value={param.malt}
+          value={params.malt}
           options={maltOptions}
           placeholder="choose malt"
         />
