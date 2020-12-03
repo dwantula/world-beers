@@ -6,14 +6,13 @@ const SelectComponents = ({ className, options, name, value, onChange, placehold
   return (
     <>
       <select className={className} name={name} value={value} onChange={onChange}>
-        <option selected hidden disabled value="">{placeholder}</option>
+        <option hidden disabled value=''>{placeholder}</option>
         {options.map(({ value, label }) => (
           <option key={value} value={value}>
             {label}
           </option>
         ))}
       </select>
-
     </>
   );
 };
@@ -22,7 +21,7 @@ SelectComponents.propTypes = {
   className: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired
 }

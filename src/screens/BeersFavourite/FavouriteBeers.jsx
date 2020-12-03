@@ -58,3 +58,4 @@ class FavouriteBeersComponent extends PureComponent {
 export default FavouriteBeersComponent;
 
 
+

@@ -7,22 +7,18 @@ import FavouriteButton from '../../shared/components/FavouriteButton/FavouriteBu
 import Button from '../../shared/components/Button/Button';
 import './styles.scss';
 
-
-
-
 function BeerOfTheDayComponent() {
-
   const [beer, setBeer] = useState({
     name: '',
     abv: '',
     img: '',
     ibu: '',
-    isPlaceholder: true
-  })
+    description: '',
+  });
 
   async function getRandomBeer() {
     const beer = await fetchRandomBeer()
-    setBeer(beer);
+    setBeer(beer)
   };
 
   function addBeerToFavourites() {
@@ -35,19 +31,15 @@ function BeerOfTheDayComponent() {
 
   return (
     <div className="beer-day-page">
-      <Heading
-        className="title-beer-day"
-        text="Beer of the day"
-      />
+      <Heading className="title-beer-day" text="Beer of the day" />
       <Button
         className="button-choose"
         onClick={getRandomBeer}
         text="Choose a beer"
       />
-      {
-        !beer.isPlaceholder && <div className="random-beer">
-          <FavouriteButton
-            onClick={addBeerToFavourites} />
+      {beer.name && (
+        <div className="random-beer">
+          <FavouriteButton onClick={addBeerToFavourites} />
           <Beer
             name={beer.name}
             description={beer.description}
@@ -56,10 +48,9 @@ function BeerOfTheDayComponent() {
             ibu={beer.ibu}
           />
         </div>
-      }
+      )}
     </div>
   );
 };
-
 
 export default BeerOfTheDayComponent;

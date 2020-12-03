@@ -2,14 +2,14 @@ import React from 'react';
 import './style.scss';
 import PropTypes from 'prop-types';
 
-const InputComponent = ({ className, placeholder, value, type, name, onChange }) => {
-  return (
+const InputComponent = ({ register, className, placeholder, type, name, onChange }) => {
 
+  return (
     <input
       className={className}
       placeholder={placeholder}
-      value={value}
       name={name}
+      ref={register}
       type={type}
       onChange={onChange}>
     </input>

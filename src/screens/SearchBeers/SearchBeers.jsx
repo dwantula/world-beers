@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { fetchBeers } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
 import Beer from '../../shared/components/Beer/Beer';
@@ -137,172 +138,171 @@ const maltOptions = [
   }
 ]
 
-class SearchBeersComponent extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      beers: [],
-      alcoholVolume: '',
-      ibuRange: '',
-      colorOfBeer: '',
-      brewedBefore: '',
-      food: '',
-      beerName: '',
-      yeast: '',
-      hops: '',
-      malt: '',
-    };
-  };
+function SearchBeersComponent() {
 
-  handleChange = event => {
+  const [beers, setBeers] = useState([])
+  const [params, setParams] = useState({
+    alcoholVolume: '',
+    id: '',
+    ibuRange: '',
+    colorOfBeer: '',
+    brewedBefore: '',
+    food: '',
+    yeast: '',
+    hops: '',
+    malt: '',
+    beerName: '',
+  });
+
+  function handleChange(event) {
+
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  getBeers = async () => {
-    const { alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, yeast, hops, malt } = this.state;
-    const beers = await fetchBeers([alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, yeast, hops, malt]);
-    this.setState({ beers });
-  };
-
-  getBeerByName = async () => {
-    const { beerName } = this.state
-    const beers = await fetchBeers([`beer_name=${beerName}`]);
-    this.setState({ beers })
-  }
-
-  addToFavorites = id => {
-    const beers = getItemFromLocalStorage('beers') || [];
-    const beer = this.state.beers.find(elem => elem.id === id);
-    const addBeer = [...beers, beer];
-    saveItemInLocalStorage('beers', addBeer);
-  };
-
-  render() {
-    const { beers, alcoholVolume, ibuRange, colorOfBeer, brewedBefore, food, beerName, yeast, hops, malt } = this.state;
-    return (
-      <div className="search-page">
-        <Heading
-          type="h1"
-          className="title-search"
-          text='Find Beers'
-        />
-        <Heading
-          text="Filter"
-          type="h4"
-          className="filter"
-        />
-        <div className="select-component">
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="alcoholVolume"
-            value={alcoholVolume}
-            options={alcohollVolumeOptions}
-            placeholder="choose Alcohol Volume"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="ibuRange"
-            value={ibuRange}
-            options={ibuOptions}
-            placeholder="choose IBU range"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="colorOfBeer"
-            value={colorOfBeer}
-            options={ebcOptions}
-            placeholder="choose EBC beers"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="brewedBefore"
-            value={brewedBefore}
-            options={brewedOptions}
-            placeholder="choose date before brewed"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="food"
-            value={food}
-            options={foodOptions}
-            placeholder="choose food paring"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="yeast"
-            value={yeast}
-            options={yeastOptions}
-            placeholder="choose yeast"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="hops"
-            value={hops}
-            options={hopsOptions}
-            placeholder="choose hops"
-          />
-          <SelectComponent
-            onChange={this.handleChange}
-            className="select"
-            name="malt"
-            value={malt}
-            options={maltOptions}
-            placeholder="choose malt"
-          />
-          <Button
-            className="button-search"
-            onClick={this.getBeers}
-            text="Find beers"
-          />
-        </div>
-        <div className="form">
-          <Heading
-            text="Search beer"
-            type="h4"
-          />
-          <InputComponent
-            name="beerName"
-            onChange={this.handleChange}
-            value={beerName}
-            placeholder="Write name of beer"
-          />
-          <Button
-            text="search"
-            onClick={this.getBeerByName}
-          />
-        </div>
-        {
-          beers.map(({ brewed, food, tagline, ebc, id, name, abv, img, description, ibu }) => (
-            <div className="beers-list" key={id}>
-              <FavouriteButton
-                onClick={() => this.addToFavorites(id)}
-              />
-              <Beer
-                name={name}
-                abv={abv}
-                img={img}
-                brewed={brewed}
-                food={food}
-                description={description}
-                ibu={ibu}
-                ebc={ebc}
-                tagline={tagline} />
-            </div>
-          ))
-        }
-      </div>
+    setParams(prevParams => (
+      { prevParams, [name]: value })
     );
   };
+
+  async function getBeers() {
+    const beers = await fetchBeers([params.alcoholVolume, params.ibuRange, params.colorOfBeer, params.brewedBefore, params.food, params.yeast, params.hops, params.malt]);
+    setBeers(beers);
+  };
+
+  async function getBeersByName() {
+    const beers = await fetchBeers([`beer_name=${params.beerName}`]);
+    setBeers(beers)
+  };
+
+  function addToFavorites(id) {
+    const storedBeers = getItemFromLocalStorage('beers') || [];
+    const allBeers = beers.find(elem => elem.id === id);
+    const newBeer = [...storedBeers, allBeers];
+    saveItemInLocalStorage('beers', newBeer);
+  };
+
+  const { register, handleSubmit, errors } = useForm();
+
+  return (
+    <div className="search-page">
+      <Heading
+        type="h1"
+        className="title-search"
+        text='Find Beers'
+      />
+      <Heading
+        text="Filter"
+        type="h4"
+        className="filter"
+      />
+      <div className="select-component">
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="alcoholVolume"
+          value={params.alcoholVolume}
+          options={alcohollVolumeOptions}
+          placeholder="choose Alcohol Volume"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="ibuRange"
+          value={params.ibuRange}
+          options={ibuOptions}
+          placeholder="choose IBU range"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="colorOfBeer"
+          value={params.colorOfBeer}
+          options={ebcOptions}
+          placeholder="choose EBC beers"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="brewedBefore"
+          value={params.brewedBefore}
+          options={brewedOptions}
+          placeholder="choose date before brewed"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="food"
+          value={params.food}
+          options={foodOptions}
+          placeholder="choose food paring"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="yeast"
+          value={params.yeast}
+          options={yeastOptions}
+          placeholder="choose yeast"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="hops"
+          value={params.hops}
+          options={hopsOptions}
+          placeholder="choose hops"
+        />
+        <SelectComponent
+          onChange={handleChange}
+          className="select"
+          name="malt"
+          value={params.malt}
+          options={maltOptions}
+          placeholder="choose malt"
+        />
+        <Button
+          className="button-search"
+          onClick={getBeers}
+          text="Find beers"
+        />
+      </div>
+      <div className="form">
+        <Heading
+          text="Search beer"
+          type="h4"
+        />
+        <InputComponent
+          name="beerName"
+          onChange={handleChange}
+          placeholder="Write name of beer"
+          register={register({ minLength: 2, maxLength: 12 })}
+        />
+        {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
+        <Button
+          type="button"
+          text="search"
+          onClick={handleSubmit(getBeersByName)}
+        />
+      </div>
+      {
+        beers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
+          <div className="beers-list" key={id}>
+            <FavouriteButton
+              onClick={() => addToFavorites(id)}
+            />
+            <Beer
+              name={name}
+              abv={abv}
+              img={img}
+              brewed={brewed}
+              food={food}
+              description={description}
+              ibu={ibu}
+              ebc={ebc}
+              tagline={tagline} />
+          </div>
+        ))
+      }
+    </div >
+  );
 };
 
 export default SearchBeersComponent;
