@@ -8,6 +8,7 @@ export async function fetchRandomBeer() {
     const { id, image_url: img, name, description, ibu, abv } = beer;
     return ({ id, img, name, description, ibu, abv })
   } catch (error) {
+    console.log(error)
   };
 };
 
@@ -41,6 +42,6 @@ export async function fetchBeers(param) {
       })
     )
   } catch (error) {
-
+    console.log(error)
   };
 };
