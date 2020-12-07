@@ -26,6 +26,7 @@ class FavouriteBeersComponent extends PureComponent {
 
   render() {
     const { beers } = this.state;
+    console.log(beers)
     return (
       <div>
         <Heading

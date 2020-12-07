@@ -8,7 +8,6 @@ import Heading from '../../shared/components/Heading/Heading';
 import SelectComponent from '../../shared/components/Select/Select';
 import FavouriteButton from '../../shared/components/FavouriteButton/FavouriteButton';
 import InputComponent from '../../shared/components/Input/Input';
-import { getItemFromLocalStorage, saveItemInLocalStorage } from '../../services/localStorage';
 
 const alcohollVolumeOptions = [
   {
@@ -139,6 +138,7 @@ const maltOptions = [
 ]
 
 function SearchBeersComponent() {
+  const { register, handleSubmit, errors } = useForm();
 
   const [beers, setBeers] = useState([])
   const [params, setParams] = useState({
@@ -155,7 +155,6 @@ function SearchBeersComponent() {
   });
 
   function handleChange(event) {
-
     const { name, value } = event.target;
     setParams(prevParams => (
       { prevParams, [name]: value })
@@ -163,7 +162,16 @@ function SearchBeersComponent() {
   };
 
   async function getBeers() {
-    const beers = await fetchBeers([params.alcoholVolume, params.ibuRange, params.colorOfBeer, params.brewedBefore, params.food, params.yeast, params.hops, params.malt]);
+    const beers = await fetchBeers([
+      params.alcoholVolume,
+      params.ibuRange,
+      params.colorOfBeer,
+      params.brewedBefore,
+      params.food,
+      params.yeast,
+      params.hops,
+      params.malt
+    ]);
     setBeers(beers);
   };
 
@@ -171,15 +179,6 @@ function SearchBeersComponent() {
     const beers = await fetchBeers([`beer_name=${params.beerName}`]);
     setBeers(beers);
   };
-
-  function addToFavorites(id) {
-    const storedBeers = getItemFromLocalStorage('beers') || [];
-    const allBeers = beers.find(elem => elem.id === id);
-    const newBeer = [...storedBeers, allBeers];
-    saveItemInLocalStorage('beers', newBeer);
-  };
-
-  const { register, handleSubmit, errors } = useForm();
 
   return (
     <div className="search-page">
@@ -285,9 +284,7 @@ function SearchBeersComponent() {
       {
         beers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
           <div className="beers-list" key={id}>
-            <FavouriteButton
-              onClick={() => addToFavorites(id)}
-            />
+            <FavouriteButton beerId={id} />
             <Beer
               name={name}
               abv={abv}

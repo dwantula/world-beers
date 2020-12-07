@@ -12,8 +12,8 @@ export async function fetchRandomBeer() {
   };
 };
 
-export async function fetchBeers(param) {
-  const url = `${baseUrl}/beers?${param.filter(String).join('&')}`
+export async function fetchBeers(params) {
+  const url = `${baseUrl}/beers?${params.filter(param => typeof param === 'string')}`
   try {
     const response = await fetch(url)
     const beers = (await response.json())
