@@ -3,30 +3,33 @@ import Heading from '../../shared/components/Heading/Heading';
 import Beer from '../../shared/components/Beer/Beer';
 import './styles.scss';
 import DeleteButton from '../../shared/components/DeleteButton/DeleteButton';
+import { fetchBeersWithIds } from '../../services/beers';
 import { getItemFromLocalStorage, saveItemInLocalStorage } from '../../services/localStorage';
 
 class FavouriteBeersComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      beers: [],
+      beers: []
     };
   };
 
-  componentDidMount = () => {
-    const beers = getItemFromLocalStorage('beers') || [];
+  componentDidMount = async () => {
+    const beersId = getItemFromLocalStorage('beers') || [];
+    const beers = await fetchBeersWithIds(beersId.join('|'));
     this.setState({ beers });
   };
 
   deleteBeer = (id) => {
-    const beers = this.state.beers.filter(element => element.id !== id);
-    this.setState({ beers });
-    saveItemInLocalStorage('beers', beers);
+    const beersIdWithoutDeletedBeer = this.state.beers.filter(element => element.id !== id);
+    const beersId = beersIdWithoutDeletedBeer.map(elem => elem.id);
+    this.setState({ beers: beersIdWithoutDeletedBeer });
+    saveItemInLocalStorage('beers', beersId);
   };
 
   render() {
     const { beers } = this.state;
-    console.log(beers)
+
     return (
       <div>
         <Heading
@@ -34,6 +37,7 @@ class FavouriteBeersComponent extends PureComponent {
           className="title-favourite-beers"
           text="Your favourite beers"
         />
+
         <div className="favourite-beer">
           {
             beers.map(({ name, id, description, abv, ibu, img }) => (

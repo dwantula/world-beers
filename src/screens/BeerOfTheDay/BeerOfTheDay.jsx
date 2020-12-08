@@ -17,7 +17,6 @@ function BeerOfTheDayComponent() {
 
   async function getRandomBeer() {
     const beer = await fetchRandomBeer()
-    console.log(beer)
     setBeer(beer)
   };
 

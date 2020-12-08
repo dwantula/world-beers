@@ -1,3 +1,4 @@
+
 const baseUrl = 'https://api.punkapi.com/v2';
 
 export async function fetchRandomBeer() {
@@ -11,6 +12,40 @@ export async function fetchRandomBeer() {
     console.log(error)
   };
 };
+
+export async function fetchBeersWithIds(param) {
+  const url = `${baseUrl}/beers?ids=${param}`
+  try {
+    const response = await fetch(url);
+    const beers = (await response.json())
+    return beers.map(
+      ({ id,
+        description,
+        name,
+        abv,
+        ibu,
+        ebc,
+        image_url: img,
+        tagline,
+        first_brewed: brewed,
+        food_pairing: food
+      }) => ({
+        id,
+        description,
+        ibu,
+        abv,
+        name,
+        ebc,
+        tagline,
+        img,
+        food,
+        brewed
+      })
+    )
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export async function fetchBeers(params) {
   const url = `${baseUrl}/beers?${params.filter(param => typeof param === 'string')}`
@@ -45,3 +80,4 @@ export async function fetchBeers(params) {
     console.log(error)
   };
 };
+
