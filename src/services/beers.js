@@ -1,3 +1,4 @@
+
 const baseUrl = 'https://api.punkapi.com/v2';
 
 export async function fetchRandomBeer() {
@@ -12,36 +13,41 @@ export async function fetchRandomBeer() {
   };
 };
 
-export async function fetchBeers(param) {
-  const url = `${baseUrl}/beers?${param.filter(String).join('&')}`
+function convertBeer(beerToConvert) {
+  const { name, id, description, ibu, ebc, image_url, first_brewed, tagline, food_pairing, abv } = beerToConvert;
+  return {
+    name,
+    id,
+    description,
+    ibu,
+    ebc,
+    img: image_url,
+    brewed: first_brewed,
+    food: food_pairing,
+    tagline,
+    abv
+  }
+}
+
+export async function fetchBeersWithIds(param) {
+  const url = `${baseUrl}/beers?ids=${param}`
+  try {
+    const response = await fetch(url);
+    const beers = (await response.json())
+    return beers.map(convertBeer)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function fetchBeers(params) {
+  const url = `${baseUrl}/beers?${params.filter(param => !!param).join('&')}`
   try {
     const response = await fetch(url)
     const beers = (await response.json())
-    return beers.map(
-      ({ id,
-        description,
-        name,
-        abv,
-        ibu,
-        ebc,
-        image_url: img,
-        tagline,
-        first_brewed: brewed,
-        food_pairing: food
-      }) => ({
-        id,
-        description,
-        ibu,
-        abv,
-        name,
-        ebc,
-        tagline,
-        img,
-        food,
-        brewed
-      })
-    )
+    return beers.map(convertBeer)
   } catch (error) {
     console.log(error)
   };
 };
+
