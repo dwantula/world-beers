@@ -33,20 +33,3 @@ export default FavouriteButton;
 
 
 
-
- // const beer = beerId
-  // console.log(beer)
-  // function addBeerToFavourites() {
-  //   const beers = getItemFromLocalStorage('beers') || [];
-  //   // const uniqueBeers = beers.filter((item, id) => id === beers.findIndex(elem => elem.id === item.id))
-  //   console.log(beers)
-  //   const { id, img, name, description, ibu, abv } = beer;
-  //   // console.log(beer)
-  //   const newBeer = { id, name, description, img, ibu, abv };
-  //   const newBeers = [...beers, newBeer];
-  //   saveItemInLocalStorage('beers', newBeers);
-  // };
-
-
-
-
