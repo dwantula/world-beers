@@ -14,7 +14,7 @@ export async function fetchRandomBeer() {
 };
 
 function convertBeer(beerToConvert) {
-  const { name, id, description, ibu, ebc, image_url, first_brewed, food_pairing, tagline, abv } = beerToConvert
+  const { name, id, description, ibu, ebc, image_url, first_brewed, tagline, food_pairing, abv } = beerToConvert;
   return {
     name,
     id,
@@ -33,7 +33,7 @@ export async function fetchBeersWithIds(param) {
   const url = `${baseUrl}/beers?ids=${param}`
   try {
     const response = await fetch(url);
-    const beers = (await response.json());
+    const beers = (await response.json())
     return beers.map(convertBeer)
   } catch (error) {
     console.log(error)
@@ -41,7 +41,7 @@ export async function fetchBeersWithIds(param) {
 }
 
 export async function fetchBeers(params) {
-  const url = `${baseUrl}/beers?${params.filter(param => typeof param === 'string')}`
+  const url = `${baseUrl}/beers?${params.filter(param => !!param).join('&')}`
   try {
     const response = await fetch(url)
     const beers = (await response.json())

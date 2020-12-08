@@ -157,8 +157,8 @@ function SearchBeersComponent() {
   function handleChange(event) {
     const { name, value } = event.target;
     setParams(prevParams => (
-      { prevParams, [name]: value })
-    );
+      { ...prevParams, [name]: value }
+    ))
   };
 
   async function getBeers() {
