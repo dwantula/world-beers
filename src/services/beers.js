@@ -40,6 +40,8 @@ export async function fetchBeersWithIds(param) {
   }
 }
 
+
+
 export async function fetchBeers(params) {
   const url = `${baseUrl}/beers?${params.filter(param => !!param).join('&')}`
   try {

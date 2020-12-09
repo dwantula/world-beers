@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { fetchBeers } from '../../services/beers';
+import { fetchBeers, fetchBeersToPagination } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
+import PaginationComponent from '../../shared/components/Pagination/Pagination';
 import Beer from '../../shared/components/Beer/Beer';
 import './styles.scss';
 import Heading from '../../shared/components/Heading/Heading';
@@ -140,10 +141,13 @@ const maltOptions = [
 function SearchBeersComponent() {
   const { register, handleSubmit, errors } = useForm();
 
+  const [beersPerPage, setBeersPerPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(2)
   const [beers, setBeers] = useState([])
+  const [pageNumber] = useState('page=2')
+  const [beerName, setBeerName] = useState([])
   const [params, setParams] = useState({
     alcoholVolume: '',
-    id: '',
     ibuRange: '',
     colorOfBeer: '',
     brewedBefore: '',
@@ -151,10 +155,9 @@ function SearchBeersComponent() {
     yeast: '',
     hops: '',
     malt: '',
-    beerName: '',
   });
 
-  function handleChange(event) {
+  function handleParamChange(event) {
     const { name, value } = event.target;
     setParams(prevParams => (
       { ...prevParams, [name]: value }
@@ -162,23 +165,28 @@ function SearchBeersComponent() {
   };
 
   async function getBeers() {
-    const beers = await fetchBeers([
-      params.alcoholVolume,
-      params.ibuRange,
-      params.colorOfBeer,
-      params.brewedBefore,
-      params.food,
-      params.yeast,
-      params.hops,
-      params.malt
-    ]);
+    const beerSearchParams = Object.values(params)
+    const beers = await fetchBeers(beerSearchParams, pageNumber);
     setBeers(beers);
   };
 
+  function handleNameChange(event) {
+    setBeerName(event.target.value)
+  }
+
   async function getBeersByName() {
-    const beers = await fetchBeers([`beer_name=${params.beerName}`]);
+    const beers = await fetchBeers([`beer_name=${beerName}`]);
+    console.log(beers)
     setBeers(beers);
   };
+
+  const indexOfLastBeer = currentPage * beersPerPage;
+  const indexOfFirstBeer = indexOfLastBeer - beersPerPage;
+  const currentBeers = beers.slice(indexOfFirstBeer, indexOfLastBeer)
+
+  function paginate(pageNumber) {
+    setCurrentPage(pageNumber)
+  }
 
   return (
     <div className="search-page">
@@ -194,7 +202,7 @@ function SearchBeersComponent() {
       />
       <div className="select-component">
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="alcoholVolume"
           value={params.alcoholVolume}
@@ -202,7 +210,7 @@ function SearchBeersComponent() {
           placeholder="choose Alcohol Volume"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="ibuRange"
           value={params.ibuRange}
@@ -210,7 +218,7 @@ function SearchBeersComponent() {
           placeholder="choose IBU range"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="colorOfBeer"
           value={params.colorOfBeer}
@@ -218,7 +226,7 @@ function SearchBeersComponent() {
           placeholder="choose EBC beers"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="brewedBefore"
           value={params.brewedBefore}
@@ -226,7 +234,7 @@ function SearchBeersComponent() {
           placeholder="choose date before brewed"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="food"
           value={params.food}
@@ -234,7 +242,7 @@ function SearchBeersComponent() {
           placeholder="choose food paring"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="yeast"
           value={params.yeast}
@@ -242,7 +250,7 @@ function SearchBeersComponent() {
           placeholder="choose yeast"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="hops"
           value={params.hops}
@@ -250,7 +258,7 @@ function SearchBeersComponent() {
           placeholder="choose hops"
         />
         <SelectComponent
-          onChange={handleChange}
+          onChange={handleParamChange}
           className="select"
           name="malt"
           value={params.malt}
@@ -270,8 +278,9 @@ function SearchBeersComponent() {
         />
         <InputComponent
           name="beerName"
-          onChange={handleChange}
+          onChange={handleNameChange}
           placeholder="Write name of beer"
+          value={beerName}
           register={register({ required: true, minLength: 2 })}
         />
         {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
@@ -282,7 +291,7 @@ function SearchBeersComponent() {
         />
       </div>
       {
-        beers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
+        currentBeers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
           <div className="beers-list" key={id}>
             <FavouriteButton beerId={id} />
             <Beer
@@ -298,6 +307,7 @@ function SearchBeersComponent() {
           </div>
         ))
       }
+      <PaginationComponent beersPerPage={beersPerPage} totalBeers={beers.length} paginate={paginate} />
     </div >
   );
 };
