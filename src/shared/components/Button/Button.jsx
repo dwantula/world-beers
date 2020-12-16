@@ -16,7 +16,6 @@ Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
 }
 
 export default Button;

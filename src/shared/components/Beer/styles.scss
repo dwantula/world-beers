@@ -3,19 +3,33 @@
 .beer-card {
   display: flex;
   margin-bottom: 50px;
+  width: 100%;
+  max-height: 450px;
+  
 }
 
 .beer-text {
   margin-left: 70px;
   text-align: justify;
-  width: 500px;
+  // width: 500px;
   margin-top: auto;
   margin-bottom: auto;
-  font-size: 19px;
+  width: 60%;
 }
 
+.text-beer {
+  font-size: 18px;
+  color:gray;
+
+}
 .img {
   width: 150px;
   height: 450px;
+  opacity: 0.8;
 }
 
+.no-photo {
+  width: 150px;
+  height: 450px;
+  margin-right: 80px;
+}

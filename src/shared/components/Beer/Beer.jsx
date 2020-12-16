@@ -4,7 +4,7 @@ const Beer = ({ food, brewed, tagline, ebc, name, abv, description, img, ibu }) 
   return (
     <div className="beer-card">
       <div className="beer-img">
-        <p>{img && <img className="img" src={img} alt="beer"></img>}</p>
+        <p>{img ? <img className="img" src={img} alt="beer"></img> : <span className="no-photo">No photo</span>}</p>
       </div>
       <div className="beer-text">
         <h3 className="text-beer">{`Beer's name: ${name}`}</h3>
