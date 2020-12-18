@@ -21,9 +21,8 @@ SelectComponents.propTypes = {
   className: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired
+  placeholder: PropTypes.string,
 }
 
 export default SelectComponents;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { fetchBeers, fetchBeersName } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
@@ -8,6 +8,7 @@ import Heading from '../../shared/components/Heading/Heading';
 import SelectComponent from '../../shared/components/Select/Select';
 import FavouriteButton from '../../shared/components/FavouriteButton/FavouriteButton';
 import InputComponent from '../../shared/components/Input/Input';
+import { render } from '@testing-library/react';
 
 const alcohollVolumeOptions = [
   {
@@ -137,6 +138,21 @@ const maltOptions = [
   }
 ]
 
+const beersPerPageOptions = [
+  {
+    label: '5',
+    value: 5
+  },
+  {
+    label: '10',
+    value: 10
+  },
+  {
+    label: '15',
+    value: 15
+  }
+]
+
 function SearchBeersComponent() {
   const { register, handleSubmit, errors } = useForm();
 
@@ -167,6 +183,10 @@ function SearchBeersComponent() {
     setBeerName(event.target.value)
   }
 
+  function handleBeersPerPageChange(event) {
+    setBeersPerPage(event.target.value)
+  }
+
   async function getBeers(queryParams, page) {
     const beers = await fetchBeers(queryParams, page, beersPerPage);
     setBeers(beers);
@@ -177,6 +197,13 @@ function SearchBeersComponent() {
     getBeers(queryParams, 1);
     setPageNumber(1);
     setParamsToPass('params')
+  }
+
+  function displayBeersPerPage() {
+    setBeersPerPage(beersPerPage)
+    const queryParams = getQueryParams();
+    getBeers(queryParams, 1, beersPerPage)
+    scroolToTop()
   }
 
   async function getBeersByName() {
@@ -191,7 +218,7 @@ function SearchBeersComponent() {
     const queryParams = getQueryParams();
     getBeers(queryParams, nextPage)
     setPageNumber(nextPage);
-    scroolTop()
+    scroolToTop()
   }
 
   function getPreviousPageBeers() {
@@ -199,7 +226,7 @@ function SearchBeersComponent() {
     const queryParams = getQueryParams();
     getBeers(queryParams, previousPage)
     setPageNumber(previousPage);
-    scroolTop()
+    scroolToTop()
   }
 
   function getQueryParams() {
@@ -208,10 +235,10 @@ function SearchBeersComponent() {
       : Object.values(params);
   }
 
-  function scroolTop() {
+  function scroolToTop() {
     window.scrollTo(0, 0)
   }
-
+  console.log(pageNumber)
   return (
     < div className="search-page" >
       <Heading
@@ -334,6 +361,16 @@ function SearchBeersComponent() {
           </div>
         ))
       }
+      <div className="beers-per-page">
+        <SelectComponent
+          onChange={handleBeersPerPageChange}
+          className="beers-per-page-select"
+          name="beersPerPage"
+          value={beersPerPage}
+          options={beersPerPageOptions}
+        />
+        <Button text="Change beers per page" onClick={displayBeersPerPage} />
+      </div>
       <div className="navigation-button">
         {pageNumber !== 1 && <Button className="prevous-button" onClick={getPreviousPageBeers} text="Previous page" />}
         {beers.length === beersPerPage && <Button className="next-button" onClick={getNextPageBeers} text="Next page" />}
