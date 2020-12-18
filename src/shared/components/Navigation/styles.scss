@@ -2,12 +2,13 @@
 
 .links-button {
   background-color: gray;
-  display: block;
   width: 25%;
   padding: 15px 30px;
   text-align: center;
   color: white;
   outline: 0;
+  font-size: 18px;
+  border:none;
 }
 
 .links-button:hover {
@@ -15,8 +16,14 @@
 }
 
 .nav {
-  display: flex;
-  position: fixed;;;
-  width: 1000px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
   top: 0;
+  display: flex;
+  width: 1000px;
+  height: 60px;
 }

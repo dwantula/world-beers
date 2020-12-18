@@ -1,5 +1,6 @@
+@import '../../shared/main-styles.scss';
+
 .image {
-  display: block;
   margin-top: 40px;
   height: 500px;
   width: 100%;
@@ -12,24 +13,27 @@
   text-align: center;
   letter-spacing: 3px;
   font-family: fantasy;
-  margin-top: 80px
+  margin-top: 80px;
+  color: black;
 }
 
 .change-button {
   display: flex;
-  height: 30px;
-  width: 120px;
   margin-top:15px;
-  padding: 7px 10px;
-  background-color: gray;
-  border: none;
+  background-color:#3e8e41;
   margin-left: auto;
   margin-right: auto;
-  outline: 0;
-  border-radius: 8px;
-  color: whitesmoke;
+  border: none;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    outline: 0;
 }
 
 .change-button:hover {
   opacity: .6;
+  
 }

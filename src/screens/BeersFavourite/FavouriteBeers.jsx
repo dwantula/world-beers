@@ -37,7 +37,6 @@ class FavouriteBeersComponent extends PureComponent {
           className="title-favourite-beers"
           text="Your favourite beers"
         />
-
         <div className="favourite-beer">
           {
             beers.map(({ name, id, description, abv, ibu, img }) => (
@@ -51,6 +50,7 @@ class FavouriteBeersComponent extends PureComponent {
                   beer={beers}
                   ibu={ibu}
                 />
+                <div className="line"></div>
               </React.Fragment>
             ))
           }

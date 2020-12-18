@@ -6,28 +6,28 @@
   letter-spacing: 3px;
   font-family: fantasy;
   margin-top: 80px;
+  color: black;
 }
 
 .button-choose {
   margin-top: 40px;
-  color: black;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  outline: 0;
-  font-family: fantasy;
-  border: none;
-  background-color: white;
+  color:white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    outline: 0;
+    font-family: fantasy;
+    border: none;
+    background-color:#3e8e41;
+    font-size: 15px;
   margin-left: 450px;
   margin-bottom: 30px;
-  font-size: 15px;
 }
 
 .button-choose:hover {
-  background-color: #febc58;
+  background-color: #3e8e41;
 }
 
 .random-beer {
   margin-left: 150px;
-  
 }

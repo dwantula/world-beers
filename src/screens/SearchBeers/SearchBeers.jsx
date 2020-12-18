@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { fetchBeers, fetchBeersName } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
@@ -140,10 +140,11 @@ const maltOptions = [
 function SearchBeersComponent() {
   const { register, handleSubmit, errors } = useForm();
 
-  const [beersPerPage, setBeersPerPage] = useState(10)
+  const [beersPerPage, setBeersPerPage] = useState(5)
   const [beers, setBeers] = useState([])
   const [pageNumber, setPageNumber] = useState(1)
-  const [beerName, setBeerName] = useState([])
+  const [paramsToPass, setParamsToPass] = useState('');
+  const [beerName, setBeerName] = useState('')
   const [params, setParams] = useState({
     alcoholVolume: '',
     ibuRange: '',
@@ -159,84 +160,89 @@ function SearchBeersComponent() {
     const { name, value } = event.target;
     setParams(prevParams => (
       { ...prevParams, [name]: value }
-    ));
-  };
-
-  async function fetchBeersFromApi(page) {
-    const beerSearchParams = Object.values(params);
-    const beers = await fetchBeers(beerSearchParams, page, beersPerPage);
-    setBeers(beers);
-  };
-
-  function getBeers() {
-    const page = pageNumber;
-    fetchBeersFromApi(page);
-    if (beers.length == beersPerPage) {
-      setPageNumber(page);
-    };
-  };
-
-  function getNextPage() {
-    const page = pageNumber + 1;
-    fetchBeersFromApi(page);
-    if (beers.length == beersPerPage) {
-      setPageNumber(page);
-    };
-  };
-
-  function getPreviousPage() {
-    const page = pageNumber - 1;
-    fetchBeersFromApi(page);
-    setPageNumber(page);
+    ))
   };
 
   function handleNameChange(event) {
-    setBeerName(event.target.value);
+    setBeerName(event.target.value)
+  }
 
+  async function getBeers(queryParams, page) {
+    const beers = await fetchBeers(queryParams, page, beersPerPage);
+    setBeers(beers);
   };
+
+  function findBeers() {
+    const queryParams = Object.values(params);
+    getBeers(queryParams, 1);
+    setPageNumber(1);
+    setParamsToPass('params')
+  }
 
   async function getBeersByName() {
-    const page = pageNumber;
-    const beers = await fetchBeersName(page, beersPerPage, beerName);
-    if (beers.length == beersPerPage) {
-      setPageNumber(page + 1);
-    };
-    setBeers(beers);
-    setBeerName([])
+    const queryParams = [`beer_name=${beerName}`];
+    getBeers(queryParams, 1);
+    setPageNumber(1);
+    setParamsToPass('beerName');
   };
 
+  function getNextPageBeers() {
+    const nextPage = pageNumber + 1;
+    const queryParams = getQueryParams();
+    getBeers(queryParams, nextPage)
+    setPageNumber(nextPage);
+    scroolTop()
+  }
+
+  function getPreviousPageBeers() {
+    const previousPage = pageNumber - 1;
+    const queryParams = getQueryParams();
+    getBeers(queryParams, previousPage)
+    setPageNumber(previousPage);
+    scroolTop()
+  }
+
+  function getQueryParams() {
+    return paramsToPass === 'beerName'
+      ? [`beer_name=${beerName}`]
+      : Object.values(params);
+  }
+
+  function scroolTop() {
+    window.scrollTo(0, 0)
+  }
+
   return (
-    <div className="search-page">
+    < div className="search-page" >
       <Heading
         type="h1"
         className="title-search"
         text='Find Beers'
       />
       <div className="conteiner">
+        <Heading
+          text="Search beer"
+          type="h2"
+        />
+        <InputComponent
+          name="beerName"
+          onChange={handleNameChange}
+          placeholder="Write name of beer"
+          className="input"
+          register={register({ required: true, minLength: 2 })}
+        />
         <div className="form">
-          <Heading
-            text="Search beer"
-            type="h4"
-          />
-          <InputComponent
-            name="beerName"
-            onChange={handleNameChange}
-            placeholder="Write name of beer"
-            className="input"
-            value={beerName}
-            register={register({ required: true, minLength: 2 })}
-          />
-          {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
           <Button
+            className="search-button"
             type="button"
             text="search"
             onClick={handleSubmit(getBeersByName)}
           />
-
         </div>
+        {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
         <Heading
           text="Filter"
-          type="h4"
+          type="h2"
           className="filter"
         />
         <div className="select-component">
@@ -308,7 +314,7 @@ function SearchBeersComponent() {
       </div>
       <Button
         className="button-search"
-        onClick={getBeers}
+        onClick={findBeers}
         text="Find beers"
       />
       {
@@ -328,9 +334,9 @@ function SearchBeersComponent() {
           </div>
         ))
       }
-      <div>
-        {pageNumber >= 2 && <Button onClick={getNextPage} text="Next page" />}
-        {pageNumber >= 2 && <Button onClick={getPreviousPage} text="Previous page" />}
+      <div className="navigation-button">
+        {pageNumber !== 1 && <Button className="prevous-button" onClick={getPreviousPageBeers} text="Previous page" />}
+        {beers.length === beersPerPage && <Button className="next-button" onClick={getNextPageBeers} text="Next page" />}
       </div>
     </div >
   );
