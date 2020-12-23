@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 import Heading from '../../shared/components/Heading/Heading';
 import Beer from '../../shared/components/Beer/Beer';
 import './styles.scss';
@@ -10,7 +10,7 @@ class FavouriteBeersComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      beers: []
+      beers: [],
     };
   };
 

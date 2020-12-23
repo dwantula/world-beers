@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { fetchBeers, fetchBeersName } from '../../services/beers';
+import { fetchBeers } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
 import Beer from '../../shared/components/Beer/Beer';
 import './styles.scss';
@@ -8,7 +8,6 @@ import Heading from '../../shared/components/Heading/Heading';
 import SelectComponent from '../../shared/components/Select/Select';
 import FavouriteButton from '../../shared/components/FavouriteButton/FavouriteButton';
 import InputComponent from '../../shared/components/Input/Input';
-import { render } from '@testing-library/react';
 
 const alcohollVolumeOptions = [
   {
@@ -174,71 +173,70 @@ function SearchBeersComponent() {
 
   function handleParamChange(event) {
     const { name, value } = event.target;
-    setParams(prevParams => (
-      { ...prevParams, [name]: value }
-    ))
-  };
+    setParams((prevParams) => ({ ...prevParams, [name]: value }));
+  }
 
   function handleNameChange(event) {
-    setBeerName(event.target.value)
+    setBeerName(event.target.value);
   }
 
   function handleBeersPerPageChange(event) {
-    setBeersPerPage(event.target.value)
+    setBeersPerPage(event.target.value);
   }
 
   async function getBeers(queryParams, page) {
     const beers = await fetchBeers(queryParams, page, beersPerPage);
     setBeers(beers);
-  };
+  }
 
   function findBeers() {
     const queryParams = Object.values(params);
     getBeers(queryParams, 1);
     setPageNumber(1);
-    setParamsToPass('params')
+    setParamsToPass("params");
   }
 
-  function displayBeersPerPage() {
-    setBeersPerPage(beersPerPage)
-    const queryParams = getQueryParams();
-    getBeers(queryParams, 1, beersPerPage)
-    scroolToTop()
-  }
+  useEffect(() => {
+    if (beers.length) {
+      const queryParams = getQueryParams();
+      getBeers(queryParams, 1, beersPerPage);
+      scroolToTop();
+    }
+  }, [beersPerPage]);
 
   async function getBeersByName() {
     const queryParams = [`beer_name=${beerName}`];
     getBeers(queryParams, 1);
     setPageNumber(1);
-    setParamsToPass('beerName');
-  };
+    setParamsToPass("beerName");
+  }
 
   function getNextPageBeers() {
     const nextPage = pageNumber + 1;
     const queryParams = getQueryParams();
-    getBeers(queryParams, nextPage)
+    getBeers(queryParams, nextPage);
     setPageNumber(nextPage);
-    scroolToTop()
+    scroolToTop();
   }
 
   function getPreviousPageBeers() {
     const previousPage = pageNumber - 1;
     const queryParams = getQueryParams();
-    getBeers(queryParams, previousPage)
+    getBeers(queryParams, previousPage);
     setPageNumber(previousPage);
-    scroolToTop()
+    scroolToTop();
   }
 
   function getQueryParams() {
-    return paramsToPass === 'beerName'
+    return paramsToPass === "beerName"
       ? [`beer_name=${beerName}`]
       : Object.values(params);
   }
 
   function scroolToTop() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
-  console.log(pageNumber)
+
   return (
     < div className="search-page" >
       <Heading
@@ -361,19 +359,20 @@ function SearchBeersComponent() {
           </div>
         ))
       }
-      <div className="beers-per-page">
-        <SelectComponent
-          onChange={handleBeersPerPageChange}
-          className="beers-per-page-select"
-          name="beersPerPage"
-          value={beersPerPage}
-          options={beersPerPageOptions}
-        />
-        <Button text="Change beers per page" onClick={displayBeersPerPage} />
-      </div>
+      {beers.length > 0 && (
+        <div className="beers-per-page">
+          <SelectComponent
+            onChange={handleBeersPerPageChange}
+            className="beers-per-page-select"
+            name="beersPerPage"
+            value={beersPerPage}
+            options={beersPerPageOptions}
+          />
+        </div>
+      )}
       <div className="navigation-button">
         {pageNumber !== 1 && <Button className="prevous-button" onClick={getPreviousPageBeers} text="Previous page" />}
-        {beers.length === beersPerPage && <Button className="next-button" onClick={getNextPageBeers} text="Next page" />}
+        {beers.length == beersPerPage && <Button className="next-button" onClick={getNextPageBeers} text="Next page" />}
       </div>
     </div >
   );

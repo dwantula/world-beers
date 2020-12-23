@@ -12,7 +12,7 @@ function BeerOfTheDayComponent() {
     abv: '',
     img: '',
     ibu: '',
-    description: '',
+    description: ''
   });
 
   async function getRandomBeer() {
