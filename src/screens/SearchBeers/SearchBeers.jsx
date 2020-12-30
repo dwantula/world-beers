@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { fetchBeers } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
@@ -11,139 +11,157 @@ import InputComponent from '../../shared/components/Input/Input';
 
 const alcohollVolumeOptions = [
   {
-    label: "more than 4,5%",
-    value: "abv_gt=4.5",
+    label: 'more than 4,5%',
+    value: 'abv_gt=4.5',
   },
   {
-    label: "less than 4,5%",
-    value: "abv_lt=4.5",
+    label: 'less than 4,5%',
+    value: 'abv_lt=4.5',
   },
-]
+];
 
 const ibuOptions = [
   {
-    label: "less than 60",
-    value: "ibu_lt=60",
+    label: 'less than 60',
+    value: 'ibu_lt=60',
   },
   {
-    label: "more than 60",
-    value: "ibu_gt=60",
+    label: 'more than 60',
+    value: 'ibu_gt=60',
   },
-]
+];
 
 const ebcOptions = [
   {
-    label: "less than 60",
-    value: "ebc_lt=60",
+    label: 'less than 60',
+    value: 'ebc_lt=60',
   },
   {
-    label: "more than 60",
-    value: "ebc_gt=60",
+    label: 'more than 60',
+    value: 'ebc_gt=60',
   },
-]
+];
 
 const brewedOptions = [
   {
-    label: "less 11-2008",
-    value: "brewed_before=11-2008"
+    label: 'less 11-2008',
+    value: 'brewed_before=11-2008',
   },
   {
-    label: "less 10-2012",
-    value: "brewed_before=10-2012"
+    label: 'less 10-2012',
+    value: 'brewed_before=10-2012',
   },
   {
-    label: "less 10-2017",
-    value: "brewed_before=10-2017"
+    label: 'less 10-2017',
+    value: 'brewed_before=10-2017',
   },
-]
+];
 
 const foodOptions = [
   {
-    label: "Chicken",
-    value: "food=chicken"
+    label: 'Chicken',
+    value: 'food=chicken',
   },
   {
-    label: "Burger",
-    value: "food=burger"
+    label: 'Burger',
+    value: 'food=burger',
   },
   {
-    label: "Salad",
-    value: "food=salad"
+    label: 'Salad',
+    value: 'food=salad',
   },
   {
-    label: "Pasta",
-    value: "food=pasta"
+    label: 'Pasta',
+    value: 'food=pasta',
   },
   {
-    label: "Fish",
-    value: "food=fish"
+    label: 'Fish',
+    value: 'food=fish',
   },
   {
-    label: "Beef",
-    value: "food=beef"
+    label: 'Beef',
+    value: 'food=beef',
   },
-]
+];
 
 const yeastOptions = [
   {
     label: 'Pilsen Lager',
-    value: 'yeast=pilsen_lager'
+    value: 'yeast=pilsen_lager',
   },
   {
     label: 'American Ale',
-    value: 'yeast=american_ale'
+    value: 'yeast=american_ale',
   },
   {
     label: 'Belgian Ardennes',
-    value: 'yeast=belgian_ardennes'
+    value: 'yeast=belgian_ardennes',
   },
   {
     label: 'French Saison',
-    value: 'yeast=french_saison'
-  }
-]
+    value: 'yeast=french_saison',
+  },
+];
 
 const hopsOptions = [
   {
     label: 'Fuggles',
-    value: 'hops=fuggles'
+    value: 'hops=fuggles',
   },
   {
     label: 'First Gold',
-    value: 'hops=first_gold'
+    value: 'hops=first_gold',
   },
   {
     label: 'Simcoe',
-    value: 'hops=simcoe'
+    value: 'hops=simcoe',
   },
   {
     label: 'Amarillo',
-    value: 'hops=amarillo'
-  }
-]
+    value: 'hops=amarillo',
+  },
+];
 
 const maltOptions = [
   {
     label: 'Caramalt',
-    value: 'malt=caramalt'
+    value: 'malt=caramalt',
   },
   {
     label: 'Munich',
-    value: 'malt=munich'
+    value: 'malt=munich',
   },
   {
     label: 'Extra Pale',
-    value: 'malt=extra_pale'
-  }
-]
+    value: 'malt=extra_pale',
+  },
+];
+
+const beersPerPageOptions = [
+  {
+    label: '5',
+    value: '5',
+  },
+  {
+    label: '10',
+    value: '10',
+  },
+  {
+    label: '15',
+    value: '15',
+  },
+];
 
 function SearchBeersComponent() {
   const { register, handleSubmit, errors } = useForm();
 
-  const [beers, setBeers] = useState([])
+  const [beersPerPage, setBeersPerPage] = useState(5);
+  const [beers, setBeers] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [paramsToPass, setParamsToPass] = useState('');
+  const [beerName, setBeerName] = useState('');
   const [params, setParams] = useState({
     alcoholVolume: '',
-    id: '',
     ibuRange: '',
     colorOfBeer: '',
     brewedBefore: '',
@@ -151,138 +169,189 @@ function SearchBeersComponent() {
     yeast: '',
     hops: '',
     malt: '',
-    beerName: '',
   });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setParams(prevParams => (
-      { ...prevParams, [name]: value }
-    ))
-  };
+  function getQueryParams() {
+    return paramsToPass === 'beerName'
+      ? [`beer_name=${beerName}`]
+      : Object.values(params);
+  }
 
-  async function getBeers() {
-    const beers = await fetchBeers([
-      params.alcoholVolume,
-      params.ibuRange,
-      params.colorOfBeer,
-      params.brewedBefore,
-      params.food,
-      params.yeast,
-      params.hops,
-      params.malt
-    ]);
+  function scroolToTop() {
+    window.scrollTo(0, 0);
+  }
+
+  function handleParamChange(event) {
+    const { name, value } = event.target;
+    setParams((prevParams) => ({ ...prevParams, [name]: value }));
+  }
+
+  function handleNameChange(event) {
+    setBeerName(event.target.value);
+  }
+
+  function handleBeersPerPageChange(event) {
+    const newPageNumber = Number(event.target.value);
+    setBeersPerPage(newPageNumber);
+  }
+
+  async function getBeers(queryParams, page) {
+    const beers = await fetchBeers(queryParams, page, beersPerPage);
     setBeers(beers);
-  };
+  }
+
+  function findBeers() {
+    const queryParams = Object.values(params);
+    getBeers(queryParams, 1);
+    setPageNumber(1);
+    setParamsToPass('params');
+  }
+
+  useEffect(() => {
+    if (beers.length) {
+      const queryParams = getQueryParams();
+      getBeers(queryParams, 1, beersPerPage);
+      scroolToTop();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [beersPerPage]);
 
   async function getBeersByName() {
-    const beers = await fetchBeers([`beer_name=${params.beerName}`]);
-    setBeers(beers);
-  };
+    const queryParams = [`beer_name=${beerName}`];
+    getBeers(queryParams, 1);
+    setPageNumber(1);
+    setParamsToPass('beerName');
+  }
+
+  function getNextPageBeers() {
+    const nextPage = pageNumber + 1;
+    const queryParams = getQueryParams();
+    getBeers(queryParams, nextPage);
+    setPageNumber(nextPage);
+    scroolToTop();
+  }
+
+  function getPreviousPageBeers() {
+    const previousPage = pageNumber - 1;
+    const queryParams = getQueryParams();
+    getBeers(queryParams, previousPage);
+    setPageNumber(previousPage);
+    scroolToTop();
+  }
 
   return (
     <div className="search-page">
-      <Heading
-        type="h1"
-        className="title-search"
-        text='Find Beers'
-      />
-      <Heading
-        text="Filter"
-        type="h4"
-        className="filter"
-      />
-      <div className="select-component">
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="alcoholVolume"
-          value={params.alcoholVolume}
-          options={alcohollVolumeOptions}
-          placeholder="choose Alcohol Volume"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="ibuRange"
-          value={params.ibuRange}
-          options={ibuOptions}
-          placeholder="choose IBU range"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="colorOfBeer"
-          value={params.colorOfBeer}
-          options={ebcOptions}
-          placeholder="choose EBC beers"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="brewedBefore"
-          value={params.brewedBefore}
-          options={brewedOptions}
-          placeholder="choose date before brewed"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="food"
-          value={params.food}
-          options={foodOptions}
-          placeholder="choose food paring"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="yeast"
-          value={params.yeast}
-          options={yeastOptions}
-          placeholder="choose yeast"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="hops"
-          value={params.hops}
-          options={hopsOptions}
-          placeholder="choose hops"
-        />
-        <SelectComponent
-          onChange={handleChange}
-          className="select"
-          name="malt"
-          value={params.malt}
-          options={maltOptions}
-          placeholder="choose malt"
-        />
-        <Button
-          className="button-search"
-          onClick={getBeers}
-          text="Find beers"
-        />
-      </div>
-      <div className="form">
-        <Heading
-          text="Search beer"
-          type="h4"
-        />
+      <Heading type="h1" className="title-search" text="Find Beers" />
+      <div className="conteiner">
+        <Heading text="Search beer" type="h2" />
         <InputComponent
+          type="input"
           name="beerName"
-          onChange={handleChange}
+          onChange={handleNameChange}
           placeholder="Write name of beer"
+          className="input"
           register={register({ required: true, minLength: 2 })}
         />
-        {errors.beerName && <p className="errors">This is field required min length of 2 to 12 </p>}
-        <Button
-          type="button"
-          text="search"
-          onClick={handleSubmit(getBeersByName)}
-        />
+        <div className="form">
+          <Button
+            className="search-button"
+            type="button"
+            text="search"
+            onClick={handleSubmit(getBeersByName)}
+          />
+        </div>
+        {errors.beerName && (
+          <p className="errors">
+            This is field required min length of 2 to 12{' '}
+          </p>
+        )}
+        <Heading text="Filter" type="h2" className="filter" />
+        <div className="select-component">
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="alcoholVolume"
+            value={params.alcoholVolume}
+            options={alcohollVolumeOptions}
+            placeholder="choose Alcohol Volume"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="ibuRange"
+            value={params.ibuRange}
+            options={ibuOptions}
+            placeholder="choose IBU range"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="colorOfBeer"
+            value={params.colorOfBeer}
+            options={ebcOptions}
+            placeholder="choose EBC beers"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="brewedBefore"
+            value={params.brewedBefore}
+            options={brewedOptions}
+            placeholder="choose date before brewed"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="food"
+            value={params.food}
+            options={foodOptions}
+            placeholder="choose food paring"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="yeast"
+            value={params.yeast}
+            options={yeastOptions}
+            placeholder="choose yeast"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="hops"
+            value={params.hops}
+            options={hopsOptions}
+            placeholder="choose hops"
+          />
+          <SelectComponent
+            onChange={handleParamChange}
+            className="select"
+            name="malt"
+            value={params.malt}
+            options={maltOptions}
+            placeholder="choose malt"
+          />
+        </div>
       </div>
-      {
-        beers.map(({ name, abv, description, id, brewed, tagline, ibu, food, img, ebc }) => (
+      <Button
+        type="button"
+        className="button-search"
+        onClick={findBeers}
+        text="Find beers"
+      />
+      {beers.map(
+        ({
+          name,
+          abv,
+          description,
+          id,
+          brewed,
+          tagline,
+          ibu,
+          food,
+          img,
+          ebc,
+        }) => (
           <div className="beers-list" key={id}>
             <FavouriteButton beerId={id} />
             <Beer
@@ -294,12 +363,43 @@ function SearchBeersComponent() {
               description={description}
               ibu={ibu}
               ebc={ebc}
-              tagline={tagline} />
+              tagline={tagline}
+            />
           </div>
-        ))
-      }
-    </div >
+        ),
+      )}
+      {beers.length > 0 && (
+        <div className="beers-per-page">
+          <SelectComponent
+            onChange={handleBeersPerPageChange}
+            className="beers-per-page-select"
+            name="beersPerPage"
+            value={beersPerPage}
+            options={beersPerPageOptions}
+            placeholder="5"
+          />
+        </div>
+      )}
+      <div className="navigation-button">
+        {pageNumber !== 1 && (
+          <Button
+            className="prevous-button"
+            onClick={getPreviousPageBeers}
+            text="Previous page"
+            type="button"
+          />
+        )}
+        {beers.length === beersPerPage && (
+          <Button
+            className="next-button"
+            onClick={getNextPageBeers}
+            text="Next page"
+            type="button"
+          />
+        )}
+      </div>
+    </div>
   );
-};
+}
 
 export default SearchBeersComponent;

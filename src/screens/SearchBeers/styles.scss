@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 100px;
+  margin-left: 40px;
 }
 
 .title-search {
@@ -13,45 +13,45 @@
   letter-spacing: 3px;
   font-family: fantasy;
   margin-top: 80px;
-  margin-right: 200px;
+  color: black;
 }
 
 .button-search {
-  color: black;
-  margin-left: 100px;
-  width: 75px;
-  height: 75px;
+  color: white;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   outline: 0;
+  font-family: fantasy;
   border: none;
-  background-color: gray;
-  margin-top: -20px;
+  background-color: #3e8e41;
+  font-size: 15px;
+  margin-left: 860px;
+  margin-top: -115px;
+  margin-bottom: 40px;
 }
 
 .button-search:hover {
-  display: inline-block;
-  text-decoration: none;
-  color: whitesmoke;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  transition: 0.5s;
+  background-color: #3e8e41;
 }
 
-.filter {
-  margin-top: 30px;
-  font-size: 25px;
-}
-
-.select-component {
-  display: flex;
+.input {
+  width: 220px;
+  height: 10px;
+  padding: 15px 10px;
+  font-size: 17px;
+  border: 1px solid green;
+  outline: 0;
+  color: black;
 }
 
 .select {
-  height: 35px;
   margin-right: 10px;
   border-radius: 8px;
   outline: 0;
+  margin-bottom: 20px;
+  width: 200px;
+  height: 35px;
   cursor: pointer;
 }
 
@@ -61,7 +61,69 @@
 }
 
 .form {
-  width: 500px;
-  height: 150px;
-  margin-bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 230px;
+  margin-top: -25px;
+}
+
+.search-button {
+  background-color: #3e8e41;
+  border: none;
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  outline: 0;
+  margin-top: -21px;
+  margin-left: 30px;
+}
+
+.search-button:hover {
+  background-color: #3e8e41;
+}
+
+.prevous-button {
+  background-color: red;
+  width: 170px;
+  border: none;
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  outline: 0;
+}
+
+.prevous-button:hover {
+  background-color: darkred;
+}
+
+.next-button {
+  background-color: #3e8e41;
+  border: none;
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  outline: 0;
+  margin-right: 50px;
+  width: 170px;
+}
+
+.next-button:hover {
+  background-color: #3e8e41;
+}
+
+.navigation-button {
+  display: flex;
+  width: 1000px;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  margin-top: 50px;
 }

@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import '../src/shared/main-styles.scss';
 
 body {
-  background-color:whitesmoke;
+  background-color: whitesmoke;
   max-width: 1000px;
   box-sizing: border-box;
   margin: 0 auto;
-  font-family: "Roboto" ;
+  font-family: 'Roboto';
 }

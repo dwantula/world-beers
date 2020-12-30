@@ -6,9 +6,16 @@
   letter-spacing: 3px;
   font-family: fantasy;
   margin-top: 80px;
+  color: black;
 }
 
 .favourite-beer {
-  margin-left: 70px ;
+  margin-left: 70px;
 }
 
+.line {
+  border-bottom: 3px solid gray;
+  margin-left: 20px;
+  margin-right: 20px;
+  opacity: 0.4;
+}

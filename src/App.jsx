@@ -15,19 +15,19 @@ const pages = [
   {
     id: 'favouriteBeers',
     label: 'Favourite Beers',
-    component: <FavouriteBeersComponent />
+    component: <FavouriteBeersComponent />,
   },
   {
     id: 'seartch beers',
     label: 'Search Beers',
-    component: <SearchBeersComponent />
+    component: <SearchBeersComponent />,
   },
   {
     id: 'beerDay',
     label: 'Beer of the Day',
     component: <BeerOfTheDayComponent />,
   },
-]
+];
 
 class App extends PureComponent {
   constructor(props) {
@@ -35,19 +35,20 @@ class App extends PureComponent {
     this.state = {
       screen: <WorldBeersComponent />,
     };
-  };
+  }
 
   handleScreenChange = (screen) => {
-    this.setState({ screen })
+    this.setState({ screen });
   };
 
   render() {
+    const { screen } = this.state;
     return (
       <>
         <Navigation pages={pages} onLinkClick={this.handleScreenChange} />
-        {this.state.screen}
+        {screen}
       </>
-    )
-  };
-};
+    );
+  }
+}
 export default App;

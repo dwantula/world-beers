@@ -16,9 +16,9 @@ function BeerOfTheDayComponent() {
   });
 
   async function getRandomBeer() {
-    const beer = await fetchRandomBeer()
-    setBeer(beer)
-  };
+    const beer = await fetchRandomBeer();
+    setBeer(beer);
+  }
 
   return (
     <div className="beer-day-page">
@@ -26,6 +26,7 @@ function BeerOfTheDayComponent() {
       <Button
         className="button-choose"
         onClick={getRandomBeer}
+        type="button"
         text="Choose a beer"
       />
       {beer.name && (
@@ -43,6 +44,6 @@ function BeerOfTheDayComponent() {
       )}
     </div>
   );
-};
+}
 
 export default BeerOfTheDayComponent;
