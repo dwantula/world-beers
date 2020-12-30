@@ -1,17 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { saveItemInLocalStorage, getItemFromLocalStorage } from '../../../services/localStorage';
 import PropTypes from 'prop-types';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import {
+  saveItemInLocalStorage,
+  getItemFromLocalStorage,
+} from '../../../services/localStorage';
 import './styles.scss';
 
 const FavouriteButton = ({ beerId }) => {
-
   function addBeerIdToFavourites() {
     const beers = getItemFromLocalStorage('beers') || [];
-    const theSameId = !!beers.find(elem => elem === beerId);
+    const theSameId = !!beers.find((elem) => elem === beerId);
     if (theSameId === false) {
-      const newBeers = [...beers, beerId]
+      const newBeers = [...beers, beerId];
       saveItemInLocalStorage('beers', newBeers);
     }
   }
@@ -26,11 +28,7 @@ const FavouriteButton = ({ beerId }) => {
 };
 
 FavouriteButton.propTypes = {
-  beerId: PropTypes.number
-}
+  beerId: PropTypes.number.isRequired,
+};
 
 export default FavouriteButton;
-
-
-
-

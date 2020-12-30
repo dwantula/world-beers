@@ -1,21 +1,32 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-const NavigationComponent = ({ pages, onLinkClick }) => {
+function NavigationComponent({ pages, onLinkClick }) {
   return (
     <nav className="nav">
       {pages.map(({ id, label, component }) => (
-        <button className="links-button" key={id} onClick={() => onLinkClick(component)}>
+        <button
+          type="button"
+          className="links-button"
+          key={id}
+          onClick={() => onLinkClick(component)}
+        >
           {label}
         </button>
       ))}
     </nav>
   );
-};
+}
 
 NavigationComponent.propTypes = {
-  pages: PropTypes.array.isRequired,
-  onLinkClick: PropTypes.func.isRequired
-}
+  pages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  onLinkClick: PropTypes.func.isRequired,
+};
 
 export default NavigationComponent;
