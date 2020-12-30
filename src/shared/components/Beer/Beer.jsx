@@ -36,7 +36,11 @@ function Beer({
             <span className="text-beer">{`First brewed: ${brewed}`}</span>
           )}
         </p>
-        <p>{food && <span className="text-beer">{`Food: ${food}`}</span>}</p>
+        <p>
+          {!!food.length && (
+            <span className="text-beer">{`Food: ${food}`}</span>
+          )}
+        </p>
         <p className="text-beer">{`ABV: ${abv}%`}</p>
         <p className="text-beer">{`IBU: ${ibu}`}</p>
         <p>{ebc && <span className="text-beer">{`EBC: ${ebc}`}</span>}</p>
@@ -60,10 +64,10 @@ Beer.propTypes = {
 
 Beer.defaultProps = {
   food: [],
-  brewed: PropTypes.string,
-  tagline: PropTypes.string,
-  ebc: PropTypes.number,
-  img: PropTypes.string,
-  ibu: PropTypes.number,
+  brewed: '',
+  tagline: '',
+  ebc: undefined,
+  img: '',
+  ibu: undefined,
 };
 export default Beer;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const baseUrl = 'https://api.punkapi.com/v2';
 
 export async function fetchRandomBeer() {
@@ -9,8 +10,8 @@ export async function fetchRandomBeer() {
     return { id, img, name, description, ibu, abv };
   } catch (error) {
     console.log(error);
+    throw error;
   }
-  return false;
 }
 
 function convertBeer(beerToConvert) {
@@ -48,8 +49,8 @@ export async function fetchBeersWithIds(param) {
     return beers.map(convertBeer);
   } catch (error) {
     console.log(error);
+    throw error;
   }
-  return false;
 }
 
 export async function fetchBeers(params, pageNumber, beersPerPage) {
@@ -62,6 +63,6 @@ export async function fetchBeers(params, pageNumber, beersPerPage) {
     return beers.map(convertBeer);
   } catch (error) {
     console.log(error);
+    throw error;
   }
-  return false;
 }
