@@ -254,7 +254,7 @@ function SearchBeersComponent() {
         />
         <div className="form">
           <Button
-            className="search-button"
+            className="search-beers-button"
             type="button"
             text="search"
             onClick={handleSubmit(getBeersByName)}
@@ -335,7 +335,7 @@ function SearchBeersComponent() {
       </div>
       <Button
         type="button"
-        className="button-search"
+        className="button-find-beers"
         onClick={findBeers}
         text="Find beers"
       />
@@ -380,7 +380,7 @@ function SearchBeersComponent() {
           />
         </div>
       )}
-      <div className="navigation-button">
+      <div className="navigation-page-buttons">
         {pageNumber !== 1 && (
           <Button
             className="prevous-button"

@@ -1,12 +1,7 @@
 @import '../../shared/main-styles.scss';
 
 .title-favourite-beers {
-  font-size: 40px;
-  text-align: center;
-  letter-spacing: 3px;
-  font-family: fantasy;
-  margin-top: 80px;
-  color: black;
+  @include title;
 }
 
 .favourite-beer {

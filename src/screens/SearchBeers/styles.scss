@@ -8,31 +8,18 @@
 }
 
 .title-search {
-  font-size: 40px;
-  text-align: center;
-  letter-spacing: 3px;
-  font-family: fantasy;
-  margin-top: 80px;
-  color: black;
+  @include title;
 }
 
-.button-search {
-  color: white;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  outline: 0;
-  font-family: fantasy;
-  border: none;
-  background-color: #3e8e41;
-  font-size: 15px;
+.button-find-beers {
   margin-left: 860px;
   margin-top: -115px;
   margin-bottom: 40px;
+  @include button-circle;
 }
 
-.button-search:hover {
-  background-color: #3e8e41;
+.button-find-beers:hover {
+  background-color: $button-positive-hover;
 }
 
 .input {
@@ -40,9 +27,9 @@
   height: 10px;
   padding: 15px 10px;
   font-size: 17px;
-  border: 1px solid green;
+  border: 1px solid $input-border-color;
   outline: 0;
-  color: black;
+  color: $input-text-color;
 }
 
 .select {
@@ -67,60 +54,40 @@
   margin-top: -25px;
 }
 
-.search-button {
-  background-color: #3e8e41;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  outline: 0;
+.search-beers-button {
+  background-color: $button-positive-color;
+  @include button;
   margin-top: -21px;
   margin-left: 30px;
+  border-radius: 8px;
 }
 
-.search-button:hover {
-  background-color: #3e8e41;
+.search-beers-button:hover {
+  background-color: $button-positive-hover;
 }
 
 .prevous-button {
-  background-color: red;
+  background-color: $button-previous-page-color;
   width: 170px;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  outline: 0;
+  @include button;
 }
 
 .prevous-button:hover {
-  background-color: darkred;
+  background-color: $button-previous-page-color-hover;
 }
 
 .next-button {
-  background-color: #3e8e41;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  outline: 0;
+  background-color: $button-positive-color;
+  @include button;
   margin-right: 50px;
   width: 170px;
 }
 
 .next-button:hover {
-  background-color: #3e8e41;
+  background-color: $button-positive-hover;
 }
 
-.navigation-button {
+.navigation-page-buttons {
   display: flex;
   width: 1000px;
   justify-content: space-around;

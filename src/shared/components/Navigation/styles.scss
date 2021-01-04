@@ -1,14 +1,15 @@
 @import '../../main-styles.scss';
 
 .links-button {
-  background-color: gray;
+  background-color: $navbar-bg-color;
   width: 25%;
   padding: 15px 30px;
   text-align: center;
-  color: white;
+  color: $navbar-text-color;
   outline: 0;
   font-size: 18px;
-  border:none;
+  border: none;
+  display: block;
 }
 
 .links-button:hover {
@@ -20,7 +21,6 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
   position: fixed;
   top: 0;
   display: flex;
