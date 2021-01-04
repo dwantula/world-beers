@@ -10,6 +10,7 @@
   font-size: 18px;
   border: none;
   display: block;
+  cursor: pointer;
 }
 
 .links-button:hover {
@@ -26,4 +27,5 @@
   display: flex;
   width: 1000px;
   height: 60px;
+  z-index: 1;
 }

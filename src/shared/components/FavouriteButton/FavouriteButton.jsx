@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import {
   saveItemInLocalStorage,
   getItemFromLocalStorage,
@@ -20,7 +20,7 @@ const FavouriteButton = ({ beerId }) => {
 
   return (
     <FontAwesomeIcon
-      icon={faHeart}
+      icon={faThumbsUp}
       className="icon"
       onClick={addBeerIdToFavourites}
     />

@@ -9,9 +9,11 @@ $button-text-color: white;
 $button-positive-hover: #3e8e41;
 $input-border-color: green;
 $input-text-color: black;
-$favourite-beer-button-color: red;
+$delete-beer-button-color: red;
 $beer-text-size: 18px;
 $button-previous-page-color-hover: darkred;
+$description-name-color: maroon;
+$icon-favourite-bg-color: yellowgreen;
 
 @mixin title {
   font-size: 40px;
@@ -28,23 +30,21 @@ $button-previous-page-color-hover: darkred;
   height: 100px;
   border-radius: 50%;
   outline: 0;
-  font-family: fantasy;
   border: none;
   background-color: $button-positive-color;
   font-size: 15px;
+  cursor: pointer;
 }
 
 @mixin button {
   border: none;
-  padding: 16px 32px;
+  padding: 10px 20px;
   text-decoration: none;
   cursor: pointer;
   color: $button-text-color;
   font-size: 14px;
   text-align: center;
   outline: 0;
-}
-
-@mixin hover-button {
-  background-color: #3e8e41;
+  border-radius: 8px;
+  cursor: pointer;
 }

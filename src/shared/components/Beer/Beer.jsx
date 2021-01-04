@@ -25,26 +25,54 @@ function Beer({
         </p>
       </div>
       <div className="beer-text">
-        <h3 className="text-beer">{`Beer's name: ${name}`}</h3>
+        <p className="text-beer">
+          <strong>Beers name: </strong>
+          {name}
+        </p>
         <p>
           {tagline && (
-            <span className="text-beer">{`Tagline: ${tagline}`}</span>
+            <span className="text-beer">
+              <strong>Tagline: </strong>
+              {tagline}
+            </span>
           )}
         </p>
         <p>
           {brewed && (
-            <span className="text-beer">{`First brewed: ${brewed}`}</span>
+            <span className="text-beer">
+              <strong>First brewed: </strong>
+              {brewed}
+            </span>
           )}
         </p>
         <p>
           {!!food.length && (
-            <span className="text-beer">{`Food: ${food}`}</span>
+            <span className="text-beer">
+              <strong>Food: </strong>
+              {food}
+            </span>
           )}
         </p>
-        <p className="text-beer">{`ABV: ${abv}%`}</p>
-        <p className="text-beer">{`IBU: ${ibu}`}</p>
-        <p>{ebc && <span className="text-beer">{`EBC: ${ebc}`}</span>}</p>
-        <p className="text-beer">{`Description: ${description}`}</p>
+        <p className="text-beer">
+          <strong>ABV: </strong>
+          {abv}%
+        </p>
+        <p className="text-beer">
+          <strong>IBU: </strong>
+          {ibu}
+        </p>
+        <p>
+          {ebc && (
+            <span className="text-beer">
+              <strong>EBC: </strong>
+              {ebc}
+            </span>
+          )}
+        </p>
+        <p className="text-beer">
+          <strong>Description: </strong>
+          {description}
+        </p>
       </div>
     </div>
   );

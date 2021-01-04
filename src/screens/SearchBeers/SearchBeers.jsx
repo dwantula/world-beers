@@ -256,7 +256,7 @@ function SearchBeersComponent() {
           <Button
             className="search-beers-button"
             type="button"
-            text="search"
+            text="Search"
             onClick={handleSubmit(getBeersByName)}
           />
         </div>
@@ -352,7 +352,7 @@ function SearchBeersComponent() {
           img,
           ebc,
         }) => (
-          <div className="beers-list" key={id}>
+          <div key={id}>
             <FavouriteButton beerId={id} />
             <Beer
               name={name}
@@ -369,16 +369,16 @@ function SearchBeersComponent() {
         ),
       )}
       {beers.length > 0 && (
-        <div className="beers-per-page">
+        <>
           <SelectComponent
             onChange={handleBeersPerPageChange}
-            className="beers-per-page-select"
+            className="beers-per-page"
             name="beersPerPage"
             value={beersPerPage}
             options={beersPerPageOptions}
             placeholder="5"
           />
-        </div>
+        </>
       )}
       <div className="navigation-page-buttons">
         {pageNumber !== 1 && (

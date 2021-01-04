@@ -5,7 +5,6 @@
   margin-bottom: 50px;
   width: 100%;
   max-height: 450px;
-  position: relative;
 }
 
 .beer-text {
@@ -14,6 +13,7 @@
   margin-top: auto;
   margin-bottom: auto;
   width: 60%;
+  height: 400px;
 }
 
 .text-beer {
@@ -31,4 +31,8 @@
   width: 150px;
   height: 450px;
   margin-right: 80px;
+}
+
+strong {
+  color: $description-name-color;
 }
