@@ -383,7 +383,7 @@ function SearchBeersComponent() {
       <div className="navigation-page-buttons">
         {pageNumber !== 1 && (
           <Button
-            className="prevous-button"
+            className="previous-button"
             onClick={getPreviousPageBeers}
             text="Previous page"
             type="button"

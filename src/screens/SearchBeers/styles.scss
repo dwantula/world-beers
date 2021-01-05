@@ -18,7 +18,7 @@
 }
 
 .button-find-beers:hover {
-  background-color: $button-positive-hover;
+  background-color: $myDarkGreen;
 }
 
 .input {
@@ -26,9 +26,9 @@
   height: 10px;
   padding: 15px 10px;
   font-size: 15px;
-  border: 2px solid $input-border-color;
+  border: 2px solid $myGreen;
   outline: 0;
-  color: $input-text-color;
+  color: $myBlack;
 }
 
 .select {
@@ -39,12 +39,12 @@
   width: 200px;
   height: 35px;
   cursor: pointer;
-  background-color: whitesmoke;
-  border: 2px solid gray;
+  background-color: $mySmokewhite;
+  border: 2px solid $myGray;
 }
 
 .errors {
-  color: red;
+  color: $myRed;
   font-size: 12px;
 }
 
@@ -56,35 +56,35 @@
 }
 
 .search-beers-button {
-  background-color: $button-positive-color;
+  background-color: $myLightGreen;
   @include button;
   margin-top: -15px;
   margin-left: 30px;
 }
 
 .search-beers-button:hover {
-  background-color: $button-positive-hover;
+  background-color: $myDarkGreen;
 }
 
-.prevous-button {
-  background-color: $button-previous-page-color;
+.previous-button {
+  background-color: $myRed;
   width: 170px;
   @include button;
 }
 
-.prevous-button:hover {
-  background-color: $button-previous-page-color-hover;
+.previous-button:hover {
+  background-color: $myDarkRed;
 }
 
 .next-button {
-  background-color: $button-positive-color;
+  background-color: $myLightGreen;
   @include button;
   margin-right: 50px;
   width: 170px;
 }
 
 .next-button:hover {
-  background-color: $button-positive-hover;
+  background-color: $myDarkGreen;
 }
 
 .navigation-page-buttons {
@@ -99,6 +99,6 @@
 .beers-per-page {
   margin-left: 800px;
   width: 40px;
-  border: 2px solid gray;
+  border: 2px solid $myGray;
   outline: 0;
 }

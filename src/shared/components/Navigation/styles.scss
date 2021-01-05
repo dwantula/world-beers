@@ -1,11 +1,11 @@
 @import '../../main-styles.scss';
 
 .links-button {
-  background-color: $navbar-bg-color;
+  background-color: $myGray;
   width: 25%;
   padding: 15px 30px;
   text-align: center;
-  color: $navbar-text-color;
+  color: $myWhite;
   outline: 0;
   font-size: 18px;
   border: none;
@@ -14,7 +14,7 @@
 }
 
 .links-button:hover {
-  background-color: lightgray;
+  background-color: $myLightGray;
 }
 
 .nav {

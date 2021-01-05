@@ -13,12 +13,11 @@
   margin-top: auto;
   margin-bottom: auto;
   width: 60%;
-  height: 400px;
 }
 
 .text-beer {
-  font-size: $beer-text-size;
-  color: $beer-text-color;
+  font-size: $text-size;
+  color: $myBlack;
 }
 
 .img {
@@ -34,5 +33,5 @@
 }
 
 strong {
-  color: $description-name-color;
+  color: $myMaroon;
 }
