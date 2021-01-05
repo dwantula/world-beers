@@ -16,8 +16,8 @@
 }
 
 .text-beer {
-  font-size: 18px;
-  color: black;
+  font-size: $text-size;
+  color: $myBlack;
 }
 
 .img {
@@ -30,4 +30,8 @@
   width: 150px;
   height: 450px;
   margin-right: 80px;
+}
+
+strong {
+  color: $myMaroon;
 }

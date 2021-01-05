@@ -254,9 +254,9 @@ function SearchBeersComponent() {
         />
         <div className="form">
           <Button
-            className="search-button"
+            className="search-beers-button"
             type="button"
-            text="search"
+            text="Search"
             onClick={handleSubmit(getBeersByName)}
           />
         </div>
@@ -335,7 +335,7 @@ function SearchBeersComponent() {
       </div>
       <Button
         type="button"
-        className="button-search"
+        className="button-find-beers"
         onClick={findBeers}
         text="Find beers"
       />
@@ -352,7 +352,7 @@ function SearchBeersComponent() {
           img,
           ebc,
         }) => (
-          <div className="beers-list" key={id}>
+          <div key={id}>
             <FavouriteButton beerId={id} />
             <Beer
               name={name}
@@ -369,21 +369,21 @@ function SearchBeersComponent() {
         ),
       )}
       {beers.length > 0 && (
-        <div className="beers-per-page">
+        <>
           <SelectComponent
             onChange={handleBeersPerPageChange}
-            className="beers-per-page-select"
+            className="beers-per-page"
             name="beersPerPage"
             value={beersPerPage}
             options={beersPerPageOptions}
             placeholder="5"
           />
-        </div>
+        </>
       )}
-      <div className="navigation-button">
+      <div className="navigation-page-buttons">
         {pageNumber !== 1 && (
           <Button
-            className="prevous-button"
+            className="previous-button"
             onClick={getPreviousPageBeers}
             text="Previous page"
             type="button"

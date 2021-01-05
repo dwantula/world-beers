@@ -4,45 +4,31 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 40px;
 }
 
 .title-search {
-  font-size: 40px;
-  text-align: center;
-  letter-spacing: 3px;
-  font-family: fantasy;
-  margin-top: 80px;
-  color: black;
+  @include title;
 }
 
-.button-search {
-  color: white;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  outline: 0;
-  font-family: fantasy;
-  border: none;
-  background-color: #3e8e41;
-  font-size: 15px;
+.button-find-beers {
   margin-left: 860px;
   margin-top: -115px;
   margin-bottom: 40px;
+  @include button-circle;
 }
 
-.button-search:hover {
-  background-color: #3e8e41;
+.button-find-beers:hover {
+  background-color: $myDarkGreen;
 }
 
 .input {
   width: 220px;
   height: 10px;
   padding: 15px 10px;
-  font-size: 17px;
-  border: 1px solid green;
+  font-size: 15px;
+  border: 2px solid $myGreen;
   outline: 0;
-  color: black;
+  color: $myBlack;
 }
 
 .select {
@@ -53,10 +39,12 @@
   width: 200px;
   height: 35px;
   cursor: pointer;
+  background-color: $mySmokewhite;
+  border: 2px solid $myGray;
 }
 
 .errors {
-  color: red;
+  color: $myRed;
   font-size: 12px;
 }
 
@@ -67,63 +55,50 @@
   margin-top: -25px;
 }
 
-.search-button {
-  background-color: #3e8e41;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  outline: 0;
-  margin-top: -21px;
+.search-beers-button {
+  background-color: $myLightGreen;
+  @include button;
+  margin-top: -15px;
   margin-left: 30px;
 }
 
-.search-button:hover {
-  background-color: #3e8e41;
+.search-beers-button:hover {
+  background-color: $myDarkGreen;
 }
 
-.prevous-button {
-  background-color: red;
+.previous-button {
+  background-color: $myRed;
   width: 170px;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  outline: 0;
+  @include button;
 }
 
-.prevous-button:hover {
-  background-color: darkred;
+.previous-button:hover {
+  background-color: $myDarkRed;
 }
 
 .next-button {
-  background-color: #3e8e41;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  outline: 0;
+  background-color: $myLightGreen;
+  @include button;
   margin-right: 50px;
   width: 170px;
 }
 
 .next-button:hover {
-  background-color: #3e8e41;
+  background-color: $myDarkGreen;
 }
 
-.navigation-button {
+.navigation-page-buttons {
   display: flex;
   width: 1000px;
   justify-content: space-around;
   margin-bottom: 40px;
   margin-top: 50px;
+  cursor: pointer;
+}
+
+.beers-per-page {
+  margin-left: 800px;
+  width: 40px;
+  border: 2px solid $myGray;
+  outline: 0;
 }

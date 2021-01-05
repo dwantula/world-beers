@@ -1,31 +1,18 @@
 @import '../../shared/main-styles.scss';
 
 .title-beer-day {
-  font-size: 40px;
-  text-align: center;
-  letter-spacing: 3px;
-  font-family: fantasy;
-  margin-top: 80px;
-  color: black;
+  @include title;
 }
 
 .button-choose {
   margin-top: 40px;
-  color: white;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  outline: 0;
-  font-family: fantasy;
-  border: none;
-  background-color: #3e8e41;
-  font-size: 15px;
+  @include button-circle;
   margin-left: 450px;
   margin-bottom: 30px;
 }
 
 .button-choose:hover {
-  background-color: #3e8e41;
+  background-color: $myDarkGreen;
 }
 
 .random-beer {

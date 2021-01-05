@@ -1,18 +1,20 @@
 @import '../../main-styles.scss';
 
 .links-button {
-  background-color: gray;
+  background-color: $myGray;
   width: 25%;
   padding: 15px 30px;
   text-align: center;
-  color: white;
+  color: $myWhite;
   outline: 0;
   font-size: 18px;
-  border:none;
+  border: none;
+  display: block;
+  cursor: pointer;
 }
 
 .links-button:hover {
-  background-color: lightgray;
+  background-color: $myLightGray;
 }
 
 .nav {
@@ -20,10 +22,10 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
   position: fixed;
   top: 0;
   display: flex;
   width: 1000px;
   height: 60px;
+  z-index: 1;
 }

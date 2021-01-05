@@ -1,47 +1,47 @@
-// $beer-text-color:black;
-// $bg-color:whitesmoke;
-// $navbar-text-color: white;
-// $title-color:black;
-// $navbar-bg-color:gray;
-// $button-positive-color:#4CAF50;
-// $button-previous-page-color:red;
-// $button-change-pictures-color:gray;
-// $button-text-color:white;
-// $input-border-color:green;
-// $input-text-color:black;
+$myBlack: #000000;
+$mySmokewhite: #f5f5f5;
+$myGray: #808080;
+$myWhite: #ffffff;
+$myRed: #ff0000;
+$myDarkRed: #8b0000;
+$myYellowGreen: #9acd32;
+$myGreen: #008000;
+$myLightGreen: #4caf50;
+$myDarkGreen: #3e8e41;
+$myMaroon: #800000;
+$text-size: large;
+$myLightGray: #d3d3d3;
 
-// @mixin title {
-//   font-size: 40px;
-//   text-align: center;
-//   letter-spacing: 3px;
-//   font-family: fantasy;
-//   margin-top: 80px;
-//   color: $title-color;
-// }
+@mixin title {
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 3px;
+  font-family: fantasy, arial, Times, serif;
+  margin-top: 80px;
+  color: $myBlack;
+}
 
-// @mixin button-circle {
-//   color:white;
-//   width: 100px;
-//   height: 100px;
-//   border-radius: 50%;
-//   outline: 0;
-//   font-family: fantasy;
-//   border: none;
-//   background-color:$button-positive-color;
-//   font-size: 15px;
-// }
+@mixin button-circle {
+  color: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  outline: 0;
+  border: none;
+  background-color: $myLightGreen;
+  font-size: 15px;
+  cursor: pointer;
+}
 
-// @mixin button {
-//   border: none;
-//   padding: 16px 32px;
-//   text-decoration: none;
-//   cursor: pointer;
-//   color: $button-text-color;
-//   font-size: 14px;
-//   text-align: center;
-//   outline: 0;
-// }
-
-// @mixin hover-button {
-//   background-color: #3e8e41;
-// }
+@mixin button {
+  border: none;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  color: $myWhite;
+  font-size: 14px;
+  text-align: center;
+  outline: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}

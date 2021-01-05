@@ -1,14 +1,16 @@
 @import '../../main-styles.scss';
 
 .icon {
-  color: red;
+  color: $myYellowGreen;
   cursor: pointer;
   font-size: 30px;
   margin-top: 30px;
-  margin-left: 170px;
-  display: block;
+  margin-left: 620px;
+  bottom: -70px;
+  display: flex;
+  position: relative;
 }
 
 .icon:hover {
-  opacity: .6;
+  opacity: 0.6;
 }
