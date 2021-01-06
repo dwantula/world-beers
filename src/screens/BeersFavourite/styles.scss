@@ -6,6 +6,7 @@
 
 .favourite-beer {
   margin-left: 70px;
+  animation: sliden 2s linear;
 }
 
 .line {
@@ -13,4 +14,16 @@
   margin-left: 20px;
   margin-right: 80px;
   opacity: 0.4;
+}
+
+@keyframes sliden {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

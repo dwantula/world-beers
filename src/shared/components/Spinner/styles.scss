@@ -1,0 +1,24 @@
+@import '../../main-styles.scss';
+
+.spinner {
+  border: 16px solid $myGold;
+  border-left: 16px solid $myBlack;
+  border-right: 16px solid $myGreen;
+  border-top: 16px solid $myRed;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 100px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

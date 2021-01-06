@@ -12,7 +12,7 @@
 
 .button-find-beers {
   margin-left: 860px;
-  margin-top: -115px;
+  margin-top: -145px;
   margin-bottom: 40px;
   @include button-circle;
 }
@@ -101,4 +101,17 @@
   width: 40px;
   border: 2px solid $myGray;
   outline: 0;
+}
+
+.button-clean-filter {
+  width: 130px;
+  height: 30px;
+  border: none;
+  opacity: 0.6;
+  outline: 0;
+  background-color: $mySmokewhite;
+}
+
+.button-clean-filter:hover {
+  opacity: 1;
 }

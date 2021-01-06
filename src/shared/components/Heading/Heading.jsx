@@ -5,7 +5,7 @@ export const H2 = 'h2';
 export const H3 = 'h3';
 export const H4 = 'h4';
 
-const creationHeading = (type, classname, text) => {
+const createHeading = (type, classname, text) => {
   switch (type) {
     case H4:
       return <h4 className={classname}>{text}</h4>;
@@ -19,7 +19,7 @@ const creationHeading = (type, classname, text) => {
 };
 
 function Heading({ type, className, text }) {
-  return creationHeading(type, className, text);
+  return createHeading(type, className, text);
 }
 
 Heading.propTypes = {

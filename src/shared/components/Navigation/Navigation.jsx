@@ -1,8 +1,12 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
+import CounterBeer from '../Counter/CounterBeers';
+import { CounterBeers } from '../../../counterBeer';
 
 function NavigationComponent({ pages, onLinkClick }) {
+  const { counter } = useContext(CounterBeers);
+
   return (
     <nav className="nav">
       {pages.map(({ id, label, component }) => (
@@ -15,6 +19,8 @@ function NavigationComponent({ pages, onLinkClick }) {
           {label}
         </button>
       ))}
+      <CounterBeer />
+      {counter}
     </nav>
   );
 }

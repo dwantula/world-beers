@@ -1,5 +1,5 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import {

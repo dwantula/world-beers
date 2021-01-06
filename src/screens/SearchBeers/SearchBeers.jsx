@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { fetchBeers } from '../../services/beers';
 import Button from '../../shared/components/Button/Button';
 import Beer from '../../shared/components/Beer/Beer';
+import Spinner from '../../shared/components/Spinner/Spinner';
 import './styles.scss';
 import Heading from '../../shared/components/Heading/Heading';
 import SelectComponent from '../../shared/components/Select/Select';
@@ -157,6 +158,7 @@ function SearchBeersComponent() {
 
   const [beersPerPage, setBeersPerPage] = useState(5);
   const [beers, setBeers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [paramsToPass, setParamsToPass] = useState('');
   const [beerName, setBeerName] = useState('');
@@ -196,8 +198,10 @@ function SearchBeersComponent() {
   }
 
   async function getBeers(queryParams, page) {
+    setLoading(true);
     const beers = await fetchBeers(queryParams, page, beersPerPage);
     setBeers(beers);
+    setLoading(false);
   }
 
   function findBeers() {
@@ -237,6 +241,19 @@ function SearchBeersComponent() {
     getBeers(queryParams, previousPage);
     setPageNumber(previousPage);
     scroolToTop();
+  }
+
+  function cleanFilter() {
+    setParams({
+      alcoholVolume: '',
+      ibuRange: '',
+      colorOfBeer: '',
+      brewedBefore: '',
+      food: '',
+      yeast: '',
+      hops: '',
+      malt: '',
+    });
   }
 
   return (
@@ -335,10 +352,17 @@ function SearchBeersComponent() {
       </div>
       <Button
         type="button"
+        onClick={cleanFilter}
+        className="button-clean-filter"
+        text="clean the filter"
+      />
+      <Button
+        type="button"
         className="button-find-beers"
         onClick={findBeers}
         text="Find beers"
       />
+      {loading && <Spinner />}
       {beers.map(
         ({
           name,
