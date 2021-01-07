@@ -9,20 +9,24 @@ $myGreen: #008000;
 $myLightGreen: #4caf50;
 $myDarkGreen: #3e8e41;
 $myMaroon: #800000;
-$text-size: large;
+$myGold: #ffd700;
 $myLightGray: #d3d3d3;
+
+$text-size: large;
+
+$opacity: 0.6;
 
 @mixin title {
   font-size: 40px;
   text-align: center;
   letter-spacing: 3px;
-  font-family: fantasy, arial, Times, serif;
+  font-family: Fantasy, Arial, Times, Serif;
   margin-top: 80px;
   color: $myBlack;
 }
 
 @mixin button-circle {
-  color: white;
+  color: $myWhite;
   width: 100px;
   height: 100px;
   border-radius: 50%;

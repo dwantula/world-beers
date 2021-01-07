@@ -18,7 +18,6 @@ function NavigationComponent({ pages, onLinkClick }) {
     </nav>
   );
 }
-
 NavigationComponent.propTypes = {
   pages: PropTypes.arrayOf(
     PropTypes.shape({
@@ -28,5 +27,4 @@ NavigationComponent.propTypes = {
   ).isRequired,
   onLinkClick: PropTypes.func.isRequired,
 };
-
 export default NavigationComponent;

@@ -14,3 +14,17 @@
   margin-right: 80px;
   opacity: 0.4;
 }
+
+.opacity-anim {
+  animation: fadeInFromNone 1500ms linear normal;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

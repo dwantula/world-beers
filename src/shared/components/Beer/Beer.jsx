@@ -49,7 +49,7 @@ function Beer({
           {!!food.length && (
             <span className="text-beer">
               <strong>Food: </strong>
-              {food}
+              {food.join(', ').toLowerCase()}
             </span>
           )}
         </p>
