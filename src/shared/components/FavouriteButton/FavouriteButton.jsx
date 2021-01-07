@@ -24,7 +24,7 @@ const FavouriteButton = ({ beerId }) => {
   return (
     <FontAwesomeIcon
       icon={faThumbsUp}
-      className={active ? 'anim icon' : 'icon'}
+      className={active ? 'spinner-anim icon' : 'icon'}
       onClick={addBeerIdToFavourites}
     />
   );

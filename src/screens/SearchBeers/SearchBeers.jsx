@@ -243,7 +243,7 @@ function SearchBeersComponent() {
     scroolToTop();
   }
 
-  function cleanFilter() {
+  function clearFilter() {
     setParams({
       alcoholVolume: '',
       ibuRange: '',
@@ -352,7 +352,7 @@ function SearchBeersComponent() {
       </div>
       <Button
         type="button"
-        onClick={cleanFilter}
+        onClick={clearFilter}
         className="button-clean-filter"
         text="clean the filter"
       />

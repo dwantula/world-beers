@@ -33,7 +33,6 @@ function BeerOfTheDayComponent() {
         type="button"
         text="Choose a beer"
       />
-      {/* {loading && <Spinner />} */}
       {loading === true ? (
         <Spinner />
       ) : (

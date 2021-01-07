@@ -10,7 +10,6 @@ import {
   getItemFromLocalStorage,
   saveItemInLocalStorage,
 } from '../../services/localStorage';
-import { CounterBeers, defaultObject } from '../../counterBeer';
 
 class FavouriteBeersComponent extends PureComponent {
   constructor(props) {
@@ -18,7 +17,6 @@ class FavouriteBeersComponent extends PureComponent {
     this.state = {
       beers: [],
       loading: false,
-      counter: defaultObject.counter,
       beerIdToDelete: '',
     };
   }
@@ -30,7 +28,6 @@ class FavouriteBeersComponent extends PureComponent {
     const beers = await fetchBeersWithIds(beersId.join('|'));
     this.setState({ beers });
     this.setState({ loading: !loading });
-    this.setState({ counter: beersId.length });
   };
 
   deleteBeer = (id) => {
@@ -47,7 +44,7 @@ class FavouriteBeersComponent extends PureComponent {
   };
 
   render() {
-    const { beers, loading, counter, beerIdToDelete } = this.state;
+    const { beers, loading, beerIdToDelete } = this.state;
     return (
       <div>
         <Heading
@@ -56,18 +53,12 @@ class FavouriteBeersComponent extends PureComponent {
           text="Your favourite beers"
         />
         <div className="favourite-beer">
-          <CounterBeers.Provider
-            value={{
-              counter,
-              handleCounterBeersChange: this.componentDidMount,
-            }}
-          />
           {loading === true ? (
             <Spinner />
           ) : (
             beers.map(({ name, id, description, abv, ibu, img }) => (
               <div
-                className={beerIdToDelete === id ? 'opacity-anims' : ''}
+                className={beerIdToDelete === id ? 'opacity-anim' : ''}
                 key={id}
               >
                 <DeleteButton onClick={() => this.deleteBeer(id)} />
