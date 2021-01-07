@@ -1,10 +1,8 @@
 @import '../../main-styles.scss';
 
 .spinner {
-  border: 16px solid $myGold;
-  border-left: 16px solid $myBlack;
-  border-right: 16px solid $myGreen;
-  border-top: 16px solid $myRed;
+  border: 16px solid $myGray;
+  border-top: 16px solid $myGreen;
   border-radius: 50%;
   width: 100px;
   height: 100px;

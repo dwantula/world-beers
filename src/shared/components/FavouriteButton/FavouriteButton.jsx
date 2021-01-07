@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -9,7 +9,10 @@ import {
 import './styles.scss';
 
 const FavouriteButton = ({ beerId }) => {
+  const [active, setActive] = useState(false);
+
   function addBeerIdToFavourites() {
+    setActive(true);
     const beers = getItemFromLocalStorage('beers') || [];
     const theSameId = !!beers.find((elem) => elem === beerId);
     if (theSameId === false) {
@@ -21,7 +24,7 @@ const FavouriteButton = ({ beerId }) => {
   return (
     <FontAwesomeIcon
       icon={faThumbsUp}
-      className="icon"
+      className={active ? 'anim icon' : 'icon'}
       onClick={addBeerIdToFavourites}
     />
   );

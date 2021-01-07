@@ -9,18 +9,23 @@
   bottom: -70px;
   display: flex;
   position: relative;
-  animation: circle 3s linear;
 }
 
 .icon:hover {
   opacity: 0.6;
 }
 
+.anim {
+  animation: circle 500ms linear;
+}
+
 @keyframes circle {
   0% {
     transform: rotate(0deg);
+    font-size: 40px;
   }
   100% {
     transform: rotate(360deg);
+    font-size: 30px;
   }
 }

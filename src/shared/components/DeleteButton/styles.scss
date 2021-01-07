@@ -9,14 +9,14 @@
   background-color: $mySmokewhite;
   margin-left: 800px;
   margin-top: 50px;
-  animation: opacityAnim 5s linear;
+  animation: showInFromNone 2s linear;
 }
 
 .delete-beer:hover {
   opacity: 0.5;
 }
 
-@keyframes opacityAnim {
+@keyframes showInFromNone {
   0% {
     opacity: 0;
   }

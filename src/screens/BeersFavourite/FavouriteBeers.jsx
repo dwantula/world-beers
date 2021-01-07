@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { PureComponent } from 'react';
 import Heading from '../../shared/components/Heading/Heading';
 import Beer from '../../shared/components/Beer/Beer';
@@ -18,6 +19,7 @@ class FavouriteBeersComponent extends PureComponent {
       beers: [],
       loading: false,
       counter: defaultObject.counter,
+      beerIdToDelete: '',
     };
   }
 
@@ -32,18 +34,20 @@ class FavouriteBeersComponent extends PureComponent {
   };
 
   deleteBeer = (id) => {
-    const { beers } = this.state;
-    const beersIdWithoutDeletedBeer = beers.filter(
-      (element) => element.id !== id,
-    );
-    const beersId = beersIdWithoutDeletedBeer.map((elem) => elem.id);
-    this.setState({ beers: beersIdWithoutDeletedBeer });
-    saveItemInLocalStorage('beers', beersId);
+    setTimeout(() => {
+      const { beers } = this.state;
+      const beersIdWithoutDeletedBeer = beers.filter(
+        (element) => element.id !== id,
+      );
+      const beersId = beersIdWithoutDeletedBeer.map((elem) => elem.id);
+      this.setState({ beers: beersIdWithoutDeletedBeer });
+      saveItemInLocalStorage('beers', beersId);
+    }, 1500);
+    this.setState({ beerIdToDelete: id });
   };
 
   render() {
-    const { beers, loading, counter } = this.state;
-    // console.log(counter);
+    const { beers, loading, counter, beerIdToDelete } = this.state;
     return (
       <div>
         <Heading
@@ -62,7 +66,10 @@ class FavouriteBeersComponent extends PureComponent {
             <Spinner />
           ) : (
             beers.map(({ name, id, description, abv, ibu, img }) => (
-              <React.Fragment key={id}>
+              <div
+                className={beerIdToDelete === id ? 'opacity-anims' : ''}
+                key={id}
+              >
                 <DeleteButton onClick={() => this.deleteBeer(id)} />
                 <Beer
                   name={name}
@@ -72,7 +79,7 @@ class FavouriteBeersComponent extends PureComponent {
                   ibu={ibu}
                 />
                 <div className="line" />
-              </React.Fragment>
+              </div>
             ))
           )}
         </div>

@@ -6,7 +6,6 @@
 
 .favourite-beer {
   margin-left: 70px;
-  animation: sliden 2s linear;
 }
 
 .line {
@@ -16,14 +15,16 @@
   opacity: 0.4;
 }
 
-@keyframes sliden {
-  from {
-    margin-left: 100%;
-    width: 300%;
+.opacity-anims {
+  animation: fadeInFromNone 1500ms linear normal;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    opacity: 1;
   }
 
-  to {
-    margin-left: 0%;
-    width: 100%;
+  100% {
+    opacity: 0;
   }
 }
