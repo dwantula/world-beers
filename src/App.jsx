@@ -5,6 +5,7 @@ import FavouriteBeersComponent from './screens/BeersFavourite/FavouriteBeers';
 import SearchBeersComponent from './screens/SearchBeers/SearchBeers';
 import Navigation from './shared/components/Navigation/Navigation';
 import './App.scss';
+import FavouriteBeersProvider from './contexts/FavouriteBeersProvider';
 
 const pages = [
   {
@@ -18,7 +19,7 @@ const pages = [
     component: <FavouriteBeersComponent />,
   },
   {
-    id: 'seartch beers',
+    id: 'search beers',
     label: 'Search Beers',
     component: <SearchBeersComponent />,
   },
@@ -44,10 +45,10 @@ class App extends PureComponent {
   render() {
     const { screen } = this.state;
     return (
-      <>
+      <FavouriteBeersProvider>
         <Navigation pages={pages} onLinkClick={this.handleScreenChange} />
         {screen}
-      </>
+      </FavouriteBeersProvider>
     );
   }
 }

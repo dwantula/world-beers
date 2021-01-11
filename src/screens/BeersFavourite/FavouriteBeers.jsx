@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import React, { PureComponent } from 'react';
 import Heading from '../../shared/components/Heading/Heading';
 import Beer from '../../shared/components/Beer/Beer';
@@ -10,6 +9,7 @@ import {
   getItemFromLocalStorage,
   saveItemInLocalStorage,
 } from '../../services/localStorage';
+import FavouriteBeersContext from '../../contexts/FavouriteBeersContext';
 
 class FavouriteBeersComponent extends PureComponent {
   constructor(props) {
@@ -18,6 +18,7 @@ class FavouriteBeersComponent extends PureComponent {
       beers: [],
       loading: false,
       beerIdToDelete: '',
+      clicked: false,
     };
   }
 
@@ -31,20 +32,26 @@ class FavouriteBeersComponent extends PureComponent {
   };
 
   deleteBeer = (id) => {
+    const clicked = true;
+    this.setState({ clicked });
+    const { setFavouriteBeersNumber } = this.context;
     setTimeout(() => {
-      const { beers } = this.state;
+      const { beers, clicked } = this.state;
       const beersIdWithoutDeletedBeer = beers.filter(
         (element) => element.id !== id,
       );
       const beersId = beersIdWithoutDeletedBeer.map((elem) => elem.id);
       this.setState({ beers: beersIdWithoutDeletedBeer });
       saveItemInLocalStorage('beers', beersId);
+      this.setState({ clicked: !clicked });
     }, 1500);
     this.setState({ beerIdToDelete: id });
+    setFavouriteBeersNumber((prevNumber) => prevNumber - 1);
   };
 
   render() {
-    const { beers, loading, beerIdToDelete } = this.state;
+    const { beers, loading, beerIdToDelete, clicked } = this.state;
+
     return (
       <div>
         <Heading
@@ -61,7 +68,9 @@ class FavouriteBeersComponent extends PureComponent {
                 className={beerIdToDelete === id ? 'opacity-anim' : ''}
                 key={id}
               >
-                <DeleteButton onClick={() => this.deleteBeer(id)} />
+                {clicked === false ? (
+                  <DeleteButton onClick={() => this.deleteBeer(id)} />
+                ) : null}
                 <Beer
                   name={name}
                   description={description}
@@ -78,5 +87,5 @@ class FavouriteBeersComponent extends PureComponent {
     );
   }
 }
-
+FavouriteBeersComponent.contextType = FavouriteBeersContext;
 export default FavouriteBeersComponent;
