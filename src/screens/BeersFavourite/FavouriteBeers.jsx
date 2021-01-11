@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import React, { PureComponent } from 'react';
 import Heading from '../../shared/components/Heading/Heading';
 import Beer from '../../shared/components/Beer/Beer';
@@ -10,6 +9,7 @@ import {
   getItemFromLocalStorage,
   saveItemInLocalStorage,
 } from '../../services/localStorage';
+import FavouriteBeersContext from '../../contexts/FavouriteBeersContext';
 
 class FavouriteBeersComponent extends PureComponent {
   constructor(props) {
@@ -18,6 +18,7 @@ class FavouriteBeersComponent extends PureComponent {
       beers: [],
       loading: false,
       beerIdToDelete: '',
+      deleteButtonClicked: false,
     };
   }
 
@@ -30,7 +31,15 @@ class FavouriteBeersComponent extends PureComponent {
     this.setState({ loading: !loading });
   };
 
+  toggleDeleteButtonClicked = () => {
+    this.setState((prevState) => ({
+      deleteButtonClicked: !prevState.deleteButtonClicked,
+    }));
+  };
+
   deleteBeer = (id) => {
+    this.toggleDeleteButtonClicked();
+    const { setFavouriteBeersNumber } = this.context;
     setTimeout(() => {
       const { beers } = this.state;
       const beersIdWithoutDeletedBeer = beers.filter(
@@ -39,12 +48,15 @@ class FavouriteBeersComponent extends PureComponent {
       const beersId = beersIdWithoutDeletedBeer.map((elem) => elem.id);
       this.setState({ beers: beersIdWithoutDeletedBeer });
       saveItemInLocalStorage('beers', beersId);
+      this.toggleDeleteButtonClicked();
     }, 1500);
     this.setState({ beerIdToDelete: id });
+    setFavouriteBeersNumber((prevNumber) => prevNumber - 1);
   };
 
   render() {
-    const { beers, loading, beerIdToDelete } = this.state;
+    const { beers, loading, beerIdToDelete, deleteButtonClicked } = this.state;
+
     return (
       <div>
         <Heading
@@ -61,7 +73,9 @@ class FavouriteBeersComponent extends PureComponent {
                 className={beerIdToDelete === id ? 'opacity-anim' : ''}
                 key={id}
               >
-                <DeleteButton onClick={() => this.deleteBeer(id)} />
+                {!deleteButtonClicked && (
+                  <DeleteButton onClick={() => this.deleteBeer(id)} />
+                )}
                 <Beer
                   name={name}
                   description={description}
@@ -78,5 +92,5 @@ class FavouriteBeersComponent extends PureComponent {
     );
   }
 }
-
+FavouriteBeersComponent.contextType = FavouriteBeersContext;
 export default FavouriteBeersComponent;

@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import FavouriteBeersContext from '../../../contexts/FavouriteBeersContext';
 import {
   saveItemInLocalStorage,
   getItemFromLocalStorage,
@@ -9,6 +10,8 @@ import {
 import './styles.scss';
 
 const FavouriteButton = ({ beerId }) => {
+  const { setFavouriteBeersNumber } = useContext(FavouriteBeersContext);
+
   const [active, setActive] = useState(false);
 
   function addBeerIdToFavourites() {
@@ -18,6 +21,7 @@ const FavouriteButton = ({ beerId }) => {
     if (theSameId === false) {
       const newBeers = [...beers, beerId];
       saveItemInLocalStorage('beers', newBeers);
+      setFavouriteBeersNumber((prevNumber) => prevNumber + 1);
     }
   }
 

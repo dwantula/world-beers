@@ -1,9 +1,19 @@
 @import '../../main-styles.scss';
 
-.links-button {
+.nav-link {
   background-color: $myGray;
   width: 25%;
-  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: $myLightGray;
+  }
+}
+
+.links-button {
+  background-color: inherit;
   text-align: center;
   color: $myWhite;
   outline: 0;
@@ -11,10 +21,6 @@
   border: none;
   display: block;
   cursor: pointer;
-}
-
-.links-button:hover {
-  background-color: $myLightGray;
 }
 
 .nav {
@@ -28,4 +34,14 @@
   width: 1000px;
   height: 60px;
   z-index: 1;
+}
+
+.counter {
+  font-size: 17px;
+  border-radius: 8px;
+  color: white;
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
+  margin-left: 5px;
 }
