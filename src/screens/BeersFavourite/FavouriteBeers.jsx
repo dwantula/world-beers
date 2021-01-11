@@ -18,7 +18,7 @@ class FavouriteBeersComponent extends PureComponent {
       beers: [],
       loading: false,
       beerIdToDelete: '',
-      clicked: false,
+      deleteButtonClicked: false,
     };
   }
 
@@ -31,26 +31,31 @@ class FavouriteBeersComponent extends PureComponent {
     this.setState({ loading: !loading });
   };
 
+  toggleDeleteButtonClicked = () => {
+    this.setState((prevState) => ({
+      deleteButtonClicked: !prevState.deleteButtonClicked,
+    }));
+  };
+
   deleteBeer = (id) => {
-    const clicked = true;
-    this.setState({ clicked });
+    this.toggleDeleteButtonClicked();
     const { setFavouriteBeersNumber } = this.context;
     setTimeout(() => {
-      const { beers, clicked } = this.state;
+      const { beers } = this.state;
       const beersIdWithoutDeletedBeer = beers.filter(
         (element) => element.id !== id,
       );
       const beersId = beersIdWithoutDeletedBeer.map((elem) => elem.id);
       this.setState({ beers: beersIdWithoutDeletedBeer });
       saveItemInLocalStorage('beers', beersId);
-      this.setState({ clicked: !clicked });
+      this.toggleDeleteButtonClicked();
     }, 1500);
     this.setState({ beerIdToDelete: id });
     setFavouriteBeersNumber((prevNumber) => prevNumber - 1);
   };
 
   render() {
-    const { beers, loading, beerIdToDelete, clicked } = this.state;
+    const { beers, loading, beerIdToDelete, deleteButtonClicked } = this.state;
 
     return (
       <div>
@@ -68,9 +73,9 @@ class FavouriteBeersComponent extends PureComponent {
                 className={beerIdToDelete === id ? 'opacity-anim' : ''}
                 key={id}
               >
-                {clicked === false ? (
+                {!deleteButtonClicked && (
                   <DeleteButton onClick={() => this.deleteBeer(id)} />
-                ) : null}
+                )}
                 <Beer
                   name={name}
                   description={description}

@@ -354,7 +354,7 @@ function SearchBeersComponent() {
         type="button"
         onClick={clearFilter}
         className="button-clean-filter"
-        text="Clean the filter"
+        text="Clear the filter"
       />
       <Button
         type="button"
