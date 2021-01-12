@@ -1,5 +1,10 @@
 @import '../../shared/main-styles.scss';
 
+.beer-day-page {
+  display: flex;
+  flex-direction: column;
+}
+
 .title-beer-day {
   @include title;
 }
@@ -7,8 +12,8 @@
 .button-choose {
   margin-top: 40px;
   @include button-circle;
-  margin-left: 450px;
   margin-bottom: 30px;
+  align-self: center;
 }
 
 .button-choose:hover {

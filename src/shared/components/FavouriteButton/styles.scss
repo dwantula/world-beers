@@ -3,11 +3,9 @@
 .icon {
   color: $myYellowGreen;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 1.75rem;
   margin-top: 30px;
-  margin-left: 620px;
   bottom: -70px;
-  display: flex;
   position: relative;
 }
 
@@ -26,6 +24,6 @@
   }
   100% {
     transform: rotate(360deg);
-    font-size: 30px;
+    font-size: 2, 3rem;
   }
 }

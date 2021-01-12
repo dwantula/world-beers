@@ -7,4 +7,32 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
   font-family: 'Roboto';
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 10px;
+  }
+  .beer-card {
+    flex-direction: column;
+  }
+
+  .img {
+    width: 30%;
+  }
+  .search-page {
+    margin-left: 20px;
+  }
+
+  .beers-per-page {
+    align-self: flex-start;
+  }
+  .navigation-page-buttons {
+    width: 600px;
+  }
+  .button-find-beers {
+    align-self: flex-start;
+    margin-top: 20px;
+  }
 }

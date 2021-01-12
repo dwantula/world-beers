@@ -11,10 +11,10 @@
 }
 
 .button-find-beers {
-  margin-left: 860px;
-  margin-top: -145px;
   margin-bottom: 40px;
   @include button-circle;
+  justify-content: center;
+  align-self: flex-end;
 }
 
 .button-find-beers:hover {
@@ -25,13 +25,14 @@
   width: 220px;
   height: 10px;
   padding: 15px 10px;
-  font-size: 15px;
+  font-size: 1rem;
   border: 2px solid $myGreen;
   outline: 0;
   color: $myBlack;
 }
 
 .select {
+  margin-left: 10px;
   margin-right: 10px;
   border-radius: 8px;
   outline: 0;
@@ -45,7 +46,7 @@
 
 .errors {
   color: $myRed;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .form {
@@ -58,7 +59,7 @@
 .search-beers-button {
   background-color: $myLightGreen;
   @include button;
-  margin-top: -15px;
+  margin-top: -10px;
   margin-left: 30px;
 }
 
@@ -97,10 +98,11 @@
 }
 
 .beers-per-page {
-  margin-left: 800px;
   width: 40px;
   border: 2px solid $myGray;
   outline: 0;
+  display: flex;
+  align-self: flex-end;
 }
 
 .button-clean-filter {

@@ -1,13 +1,18 @@
 @import '../../main-styles.scss';
 
+.cart {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+}
+
 .delete-beer {
   border: none;
   outline: 0;
   color: $myRed;
-  font-size: 30px;
+  font-size: 1.7rem;
   cursor: pointer;
   background-color: $mySmokewhite;
-  margin-left: 800px;
   margin-top: 50px;
   animation: showInFromNone 2s linear;
 }
