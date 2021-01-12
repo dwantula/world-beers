@@ -11,7 +11,7 @@
 }
 
 .button-find-beers {
-  margin-bottom: 40px;
+  margin-top: -150px;
   @include button-circle;
   justify-content: center;
   align-self: flex-end;
@@ -29,6 +29,8 @@
   border: 2px solid $myGreen;
   outline: 0;
   color: $myBlack;
+  margin-left: 10px;
+  border-radius: 8px;
 }
 
 .select {
@@ -106,6 +108,7 @@
 }
 
 .button-clean-filter {
+  margin-left: 10px;
   @include button;
   width: 150px;
   background-color: $myLightGreen;

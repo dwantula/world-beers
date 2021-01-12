@@ -19,9 +19,14 @@ body {
   }
 
   .img {
-    width: 30%;
+    width: 90%;
+    height: 300px;
   }
   .search-page {
+    margin-left: 20px;
+    width: 95%;
+  }
+  .favourite-beer {
     margin-left: 20px;
   }
 
@@ -29,10 +34,18 @@ body {
     align-self: flex-start;
   }
   .navigation-page-buttons {
-    width: 600px;
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .button-find-beers {
     align-self: flex-start;
     margin-top: 20px;
+  }
+  .random-beer {
+    margin-left: 20px;
+  }
+  .cart {
+    margin-left: -100px;
   }
 }

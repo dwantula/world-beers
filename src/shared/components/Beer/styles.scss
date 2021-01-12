@@ -11,30 +11,35 @@
 .beer-text {
   text-align: justify;
   width: 60%;
-  display: flex;
   flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.text-beer {
+.text {
   font-size: $text-size;
   color: $myBlack;
 }
 
 .beer-img {
-  max-height: 450px;
+  min-height: 400px;
   display: flex;
+  width: 30%;
+  margin-left: 20px;
 }
 
 .img {
-  width: 50%;
-  height: 450px;
+  width: 40%;
+  height: 380px;
   opacity: 0.7;
+  margin: 0;
 }
 
 .no-photo {
-  width: 150px;
-  height: 450px;
+  margin-top: 180px;
+  display: flex;
   margin-right: 80px;
+  font-size: 2rem;
 }
 
 strong {
