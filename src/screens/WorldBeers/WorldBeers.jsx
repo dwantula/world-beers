@@ -21,7 +21,7 @@ const WorldBeersComponent = () => {
         {images[imageIndex]}
         <Button
           onClick={handleClick}
-          text="Change Pictures"
+          text="Change picture"
           type="button"
           className="change-button"
         />

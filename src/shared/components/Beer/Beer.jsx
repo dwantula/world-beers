@@ -16,17 +16,15 @@ function Beer({
   return (
     <div className="beer-card">
       <div className="beer-img">
-        <p>
-          {img ? (
-            <img className="img" src={img} alt="beer" />
-          ) : (
-            <span className="no-photo">No photo</span>
-          )}
-        </p>
+        {img ? (
+          <img className="img" src={img} alt="beer" />
+        ) : (
+          <span className="no-photo">No photo</span>
+        )}
       </div>
       <div className="beer-text">
         <p className="text">
-          <strong>Beers name: </strong>
+          <strong>Beer name: </strong>
           {name}
         </p>
         <p>
