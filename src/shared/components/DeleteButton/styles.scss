@@ -1,9 +1,12 @@
 @import '../../main-styles.scss';
 
-.cart {
+.icon-position {
   display: flex;
   justify-content: flex-end;
   width: 80%;
+  @media only screen and (max-width: 600px) {
+    margin-left: -100px;
+  }
 }
 
 .delete-beer {
@@ -15,10 +18,9 @@
   background-color: $mySmokewhite;
   margin-top: 50px;
   animation: showInFromNone 2s linear;
-}
-
-.delete-beer:hover {
-  opacity: 0.5;
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 @keyframes showInFromNone {

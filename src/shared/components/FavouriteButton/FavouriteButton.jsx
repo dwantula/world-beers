@@ -26,7 +26,7 @@ const FavouriteButton = ({ beerId }) => {
   }
 
   return (
-    <div className="cart">
+    <div className="icon-position">
       <FontAwesomeIcon
         icon={faThumbsUp}
         className={active ? 'spinner-anim icon' : 'icon'}

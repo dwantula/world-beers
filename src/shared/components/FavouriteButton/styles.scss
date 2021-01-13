@@ -7,10 +7,9 @@
   margin-top: 30px;
   bottom: -70px;
   position: relative;
-}
-
-.icon:hover {
-  opacity: 0.6;
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 .spinner-anim {

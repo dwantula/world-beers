@@ -2,18 +2,26 @@
 
 .beer-card {
   display: flex;
-  margin-bottom: 50px;
-  width: 100%;
-  min-height: 450px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  width: 80%;
+  min-height: 400px;
   flex-direction: row;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .beer-text {
   text-align: justify;
-  width: 60%;
+  width: 100%;
   flex-direction: column;
   margin-top: auto;
+  margin-left: 30px;
   margin-bottom: auto;
+  @media only screen and (max-width: 600px) {
+    margin-top: -10px;
+  }
 }
 
 .text {
@@ -22,17 +30,20 @@
 }
 
 .beer-img {
-  min-height: 400px;
+  height: 400px;
   display: flex;
-  width: 30%;
-  margin-left: 20px;
+  width: 200px;
 }
 
 .img {
-  width: 40%;
-  height: 380px;
+  width: 100%;
   opacity: 0.7;
-  margin: 0;
+  object-fit: contain;
+  height: 100%;
+  @media only screen and (max-width: 600px) {
+    height: 100%;
+    width: 90%;
+  }
 }
 
 .no-photo {

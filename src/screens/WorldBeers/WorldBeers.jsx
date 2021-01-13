@@ -15,7 +15,7 @@ const WorldBeersComponent = () => {
     setImageIndex(imageIndex >= images.length - 1 ? 0 : imageIndex + 1);
 
   return (
-    <div className="flex">
+    <div className="world-beers-page">
       <Heading className="title" text="World Beers" />
       <>
         {images[imageIndex]}

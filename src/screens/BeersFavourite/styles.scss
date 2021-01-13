@@ -7,6 +7,9 @@
 .favourite-beer {
   margin-left: 70px;
   margin-right: 90px;
+  @media only screen and (max-width: 600px) {
+    margin-left: 20px;
+  }
 }
 
 .line {

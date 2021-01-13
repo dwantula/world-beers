@@ -6,7 +6,7 @@ import './styles.scss';
 
 const DeleteButton = ({ onClick }) => {
   return (
-    <div className="cart">
+    <div className="icon-position">
       <FontAwesomeIcon
         icon={faTrash}
         className="delete-beer"
