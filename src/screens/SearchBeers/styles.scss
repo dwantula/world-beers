@@ -121,6 +121,7 @@
 
 .button-clean-filter {
   margin-left: 10px;
+  z-index: 1;
   @include button;
   width: 150px;
   background-color: $myLightGreen;
