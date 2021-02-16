@@ -16,22 +16,20 @@ function Beer({
   return (
     <div className="beer-card">
       <div className="beer-img">
-        <p>
-          {img ? (
-            <img className="img" src={img} alt="beer" />
-          ) : (
-            <span className="no-photo">No photo</span>
-          )}
-        </p>
+        {img ? (
+          <img className="img" src={img} alt="beer" />
+        ) : (
+          <span className="no-photo">No photo</span>
+        )}
       </div>
       <div className="beer-text">
-        <p className="text-beer">
-          <strong>Beers name: </strong>
+        <p className="text">
+          <strong>Beer name: </strong>
           {name}
         </p>
         <p>
           {tagline && (
-            <span className="text-beer">
+            <span className="text">
               <strong>Tagline: </strong>
               {tagline}
             </span>
@@ -39,7 +37,7 @@ function Beer({
         </p>
         <p>
           {brewed && (
-            <span className="text-beer">
+            <span className="text">
               <strong>First brewed: </strong>
               {brewed}
             </span>
@@ -47,29 +45,29 @@ function Beer({
         </p>
         <p>
           {!!food.length && (
-            <span className="text-beer">
+            <span className="text">
               <strong>Food: </strong>
               {food.join(', ').toLowerCase()}
             </span>
           )}
         </p>
-        <p className="text-beer">
+        <p className="text">
           <strong>ABV: </strong>
           {abv}%
         </p>
-        <p className="text-beer">
+        <p className="text">
           <strong>IBU: </strong>
           {ibu}
         </p>
         <p>
           {ebc && (
-            <span className="text-beer">
+            <span className="text">
               <strong>EBC: </strong>
               {ebc}
             </span>
           )}
         </p>
-        <p className="text-beer">
+        <p className="text">
           <strong>Description: </strong>
           {description}
         </p>

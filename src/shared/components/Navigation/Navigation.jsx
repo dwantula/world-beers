@@ -20,9 +20,7 @@ function NavigationComponent({ pages, onLinkClick }) {
             {label}
           </button>
           {id === 'favouriteBeers' && (
-            <div className="counter">
-              <Counter favouriteBeersNumber={favouriteBeersNumber} />
-            </div>
+            <Counter favouriteBeersNumber={favouriteBeersNumber} />
           )}
         </div>
       ))}

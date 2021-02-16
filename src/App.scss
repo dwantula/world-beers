@@ -7,4 +7,11 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
   font-family: 'Roboto';
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 10px;
+  }
 }

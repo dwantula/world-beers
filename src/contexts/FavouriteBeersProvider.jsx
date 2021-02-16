@@ -7,7 +7,8 @@ function FavouriteBeersProvider({ children }) {
   const [favouriteBeersNumber, setFavouriteBeersNumber] = useState(0);
 
   useEffect(() => {
-    const initialBeersNumber = getItemFromLocalStorage('beers').length || 0;
+    const storedBeers = getItemFromLocalStorage('beers');
+    const initialBeersNumber = storedBeers ? storedBeers.length : 0;
     setFavouriteBeersNumber(initialBeersNumber);
   }, []);
 

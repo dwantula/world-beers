@@ -6,12 +6,16 @@
 
 .favourite-beer {
   margin-left: 70px;
+  margin-right: 90px;
+  @media only screen and (max-width: 600px) {
+    margin-left: 20px;
+  }
 }
 
 .line {
   border-bottom: 2px solid $myGray;
   margin-left: 20px;
-  margin-right: 80px;
+  margin-right: 20px;
   opacity: 0.4;
 }
 

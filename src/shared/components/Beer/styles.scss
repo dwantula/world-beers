@@ -2,34 +2,60 @@
 
 .beer-card {
   display: flex;
-  margin-bottom: 50px;
-  width: 100%;
-  max-height: 450px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  width: 80%;
+  min-height: 400px;
+  flex-direction: row;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .beer-text {
-  margin-left: 70px;
   text-align: justify;
+  width: 100%;
+  flex-direction: column;
   margin-top: auto;
+  margin-left: 30px;
   margin-bottom: auto;
-  width: 60%;
+  @media only screen and (max-width: 600px) {
+    margin-top: -10px;
+  }
 }
 
-.text-beer {
+.text {
   font-size: $text-size;
   color: $myBlack;
 }
 
+.beer-img {
+  height: 400px;
+  display: flex;
+  width: 200px;
+  @media only screen and (max-width: 600px) {
+    margin-bottom: -70px;
+    align-self: center;
+  }
+}
+
 .img {
-  width: 150px;
-  height: 450px;
-  opacity: 0.7;
+  width: 100%;
+  object-fit: contain;
+  height: 100%;
+  @media only screen and (max-width: 600px) {
+    height: 70%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .no-photo {
-  width: 150px;
-  height: 450px;
+  margin-top: 180px;
+  display: flex;
   margin-right: 80px;
+  font-size: 2rem;
 }
 
 strong {

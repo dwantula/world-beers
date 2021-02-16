@@ -26,11 +26,13 @@ const FavouriteButton = ({ beerId }) => {
   }
 
   return (
-    <FontAwesomeIcon
-      icon={faThumbsUp}
-      className={active ? 'spinner-anim icon' : 'icon'}
-      onClick={addBeerIdToFavourites}
-    />
+    <div className="icon-position-favourite-button">
+      <FontAwesomeIcon
+        icon={faThumbsUp}
+        className={active ? 'spinner-anim icon' : 'icon'}
+        onClick={addBeerIdToFavourites}
+      />
+    </div>
   );
 };
 
